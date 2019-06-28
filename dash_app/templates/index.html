@@ -15,19 +15,19 @@
   </style>
   <title>Donut Chart</title>
 </head>
-<body class="indigo">
+<body class="orange lighten-2">
 
-  <header class="orange darken-1 section">
-    <h2 class="center white-text">Stack Overflow Annual Survey</h2>
-    <p class="flow-text grey-text center text-lighten-2">D3JS Donut</p>
+  <header class="indigo lighten-1 section">
+    <h4 class="center white-text">Stack Overflow Annual Survey</h4>
+    <p class="flow-text grey-text center text-lighten-2">D3JS HOME</p>
   </header>
 
   <div class="container section">
     <div class="row">
-      <div class="col s12 m6">
+      <div class="col s12 m12">
 
       </div>
-      <div class="col s12 m5 push-m1">
+      <div class="col s12 m12">
         <div class="donut"></div>
       </div>
     </div>
@@ -36,9 +36,41 @@
   <!-- Compiled and minified JavaScript -->
   
 
+  <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-firestore.js"></script>
+  <script>
+    // Initialize Firebase
+    // var config = {
+    //   apiKey: "AIzaSyBimZS4KHtAzEICqMyph25tUEpKA2lJ1e0",
+    //   authDomain: "d3-testing-nn.firebaseapp.com",
+    //   databaseURL: "https://d3-testing-nn.firebaseio.com",
+    //   projectId: "d3-testing-nn",
+    //   storageBucket: "d3-testing-nn.appspot.com",
+    //   messagingSenderId: "450687416936"
+    // };
+    // firebase.initializeApp(config);
+    // const db = firebase.firestore();
+    // const settings = {timestampsInSnapshots: true};
+    // db.settings(settings);
+
+    var firebaseConfig = {
+      apiKey: "AIzaSyC4yFLYsYNqiu1Y5qUsax_inDPPYAsCFAs",
+      authDomain: "d3firebase-8b7f9.firebaseapp.com",
+      databaseURL: "https://d3firebase-8b7f9.firebaseio.com",
+      projectId: "d3firebase-8b7f9",
+      storageBucket: "d3firebase-8b7f9.appspot.com",
+      messagingSenderId: "432025399272",
+      appId: "1:432025399272:web:e5979fe041736e5e"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    db.settings({ timestampsInSnapshots: true });
+  </script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.js"></script>
-  <script src="donutChart.js"></script>
+  <!-- <script src="../static/js/donutChart.js"></script> -->
   <!-- <script src="graph.js"></script> -->
 </body>
 </html>
