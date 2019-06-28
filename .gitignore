@@ -6,7 +6,7 @@ developer_survey_2019
 # jsotest.html
 # dataProcessing.ipynb
 developer_survey_2019/
-dash_app/db/js_overload.sqlite
+# dash_app/db/js_overload.sqlite
 
 dataProcessing-Copy1.ipynb
 dash_app/Untitled.ipynb
