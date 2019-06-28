@@ -90,17 +90,17 @@ d3.json('/countries').then( (data) =>  {
   update(top10Countries)
   console.log('top10Countries1: ', top10Countries);
 
-  // setTimeout(function(){ 
-  //   alert("Hello")
-  //   let first = top10Countries[0].respondentCount
-  //   let second = top10Countries[1].respondentCount
-  //   top10Countries[0].respondentCount = second
-  //   top10Countries[1].respondentCount = first;
+  setTimeout(function(){ 
+    alert("Hello")
+    let first = top10Countries[0].respondentCount
+    let second = top10Countries[1].respondentCount
+    top10Countries[0].respondentCount = second
+    top10Countries[1].respondentCount = first;
 
-  //   update(top10Countries)
-  //   console.log('top10Countries2: ', top10Countries);
+    update(top10Countries)
+    console.log('top10Countries2: ', top10Countries);
 
-  // }, 750);
+  }, 750);
 
 });
 
