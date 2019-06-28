@@ -91,7 +91,7 @@ d3.json('/countries').then( (data) =>  {
   console.log('top10Countries1: ', top10Countries);
 
   setTimeout(function(){ 
-    alert("Hello")
+    alert("Click me to update data")
     let first = top10Countries[0].respondentCount
     let second = top10Countries[1].respondentCount
     top10Countries[0].respondentCount = second
