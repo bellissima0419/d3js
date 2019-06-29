@@ -1,5 +1,4 @@
 # FLASK_APP=dash_app/app.py flask run
-
 import pandas as pd
 import numpy as np
 from flask import Flask, jsonify, render_template
@@ -8,12 +7,10 @@ import re
 
 app = Flask(__name__)
 
-
 @app.route("/")
 def index():
     """Return the homepage."""
     return render_template("index.html")
-
 
 @app.route("/columns")
 def names():
@@ -26,19 +23,6 @@ def names():
     column_names = [i[1] for i in rows]
     return jsonify(column_names)
 
-    # cols = '''
-    #     SELECT name, sql FROM sqlite_master
-    #     WHERE type='table' AND name = 'jso11k'
-    # '''
-    # cur.execute(cols)
-    # rows = cur.fetchall()
-    # col_string = rows[0][1]
-    # pattern = r'`([A-Za-z0-9]*)`'
-    # column_names = re.findall(pattern, col_string)[:-1]
-
-    # return jsonify(column_names)
-
-####################################################
     # COUNTRIES API
 @app.route("/countries")
 def countries():
@@ -103,7 +87,6 @@ def mapChart():
     """Return the mapChart page."""
     return render_template("mapChart.html")
 ###################################################
-
 ####################################################
     # LINE CHART ROUTE
     # @TODO route for the LINE chart
@@ -114,7 +97,6 @@ def lineChart():
     return render_template("lineChart.html")
 
 ####################################################
-
 ####################################################
     # LINE CHART ROUTE
     # @TODO route for the donutChart chart
@@ -143,6 +125,21 @@ if __name__ == "__main__":
 ####################################################
 ####################################################
 ####################################################
+####################################################
+
+
+####################################################
+    # cols = '''
+    #     SELECT name, sql FROM sqlite_master
+    #     WHERE type='table' AND name = 'jso11k'
+    # '''
+    # cur.execute(cols)
+    # rows = cur.fetchall()
+    # col_string = rows[0][1]
+    # pattern = r'`([A-Za-z0-9]*)`'
+    # column_names = re.findall(pattern, col_string)[:-1]
+
+    # return jsonify(column_names)
 ####################################################
 
 # import pandas as pd
