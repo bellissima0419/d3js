@@ -17,22 +17,26 @@ def index():
 
 @app.route("/columns")
 def names():
-    """Return Column names from  a random sample   n = 11000 rows from the original dataset."""
+    """Return Column names from  a random sample  n = 11000 rows from the original dataset."""
 
     conn = sqlite3.connect("dash_app/db/js_overload.sqlite")
     cur = conn.cursor()
-    cols = '''
-        SELECT name, sql FROM sqlite_master
-        WHERE type='table' AND name = 'jso11k'
-    '''
-
-    cur.execute(cols)
+    cur.execute("PRAGMA table_info(jso11k)")
     rows = cur.fetchall()
-    col_string = rows[0][1]
-    pattern = r'`([A-Za-z0-9]*)`'
-    column_names = re.findall(pattern, col_string)[:-1]
-
+    column_names = [i[1] for i in rows]
     return jsonify(column_names)
+
+    # cols = '''
+    #     SELECT name, sql FROM sqlite_master
+    #     WHERE type='table' AND name = 'jso11k'
+    # '''
+    # cur.execute(cols)
+    # rows = cur.fetchall()
+    # col_string = rows[0][1]
+    # pattern = r'`([A-Za-z0-9]*)`'
+    # column_names = re.findall(pattern, col_string)[:-1]
+
+    # return jsonify(column_names)
 
 ####################################################
     # COUNTRIES API
@@ -63,12 +67,34 @@ def countries():
         country_data.append(tempDict)
 
     return jsonify(country_data)
+
 ####################################################
 ####################################################
 
-#  SEPARETE ROUTES FOR EACH CHART WHILE IN DEVELOPMENT
+@app.route("/genders")
+def genders():
+    """
+     Return a list of respondents count and percentages out of those who answered the Gender question
+    """
+    conn = sqlite3.connect("dash_app/db/js_overload.sqlite")
+    cur = conn.cursor()
 
+    genders_query = "SELECT Gender, COUNT(Gender) FROM jso11k GROUP BY Gender"
+
+    cur.execute(genders_query)
+    rows = cur.fetchall()
+
+    gender_data = []
+    for row in rows:
+        temp_dict = {}
+        temp_dict["gender"] = row[0]
+        temp_dict["gender_count"] = row[1]
+        gender_data.append(temp_dict)
+
+    return jsonify(gender_data)
 ####################################################
+####################################################
+
     # MAP CHART ROUTE
     # @TODO route for the map chart
 # THE CSS STYLE IS JUST A DEMO
