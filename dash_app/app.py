@@ -79,6 +79,72 @@ def genders():
 ####################################################
 ####################################################
 
+@app.route("/languagesGender")
+def languages_gender():
+    """
+     Return a list of language use frequency by gender
+    """
+    conn = sqlite3.connect("dash_app/db/js_overload.sqlite")
+    cur = conn.cursor()
+
+    queries = {
+            "man": '''
+                SELECT LanguageWorkedWith, COUNT(LanguageWorkedWith)
+                FROM jso11k WHERE Gender = 'Man' and LanguageWorkedWith > 0
+                GROUP BY LanguageWorkedWith ORDER BY COUNT(LanguageWorkedWith)
+            ''',
+            "woman": '''
+                SELECT LanguageWorkedWith, COUNT(LanguageWorkedWith)
+                FROM jso11k
+                WHERE Gender = 'Woman' and LanguageWorkedWith > 0
+                GROUP BY LanguageWorkedWith ORDER BY COUNT(LanguageWorkedWith) DESC
+            ''',
+            "other": '''
+                SELECT LanguageWorkedWith, COUNT(LanguageWorkedWith)
+                FROM jso11k
+                WHERE Gender NOT IN ('Man', 'Woman') and LanguageWorkedWith > 0
+                GROUP BY LanguageWorkedWith ORDER BY COUNT(LanguageWorkedWith) DESC
+            '''
+        }
+
+    languages_by_gender = []
+
+    for key, value in queries.items():
+
+        cur.execute(value)
+        rows = cur.fetchall()
+
+        language_freq = {}
+        
+        for row in rows:
+            languages = row[0].split(';')   
+            for item in languages:
+                if item in language_freq:
+                    language_freq[item] += int(row[1])
+                else:
+                    language_freq[item] = int(row[1])
+                
+        languages_by_gender.append({key: language_freq})
+    
+    return jsonify(languages_by_gender)
+
+    # def CountFrequency(my_list): 
+    # # Creating an empty dictionary
+      
+    # freq = {} 
+    # for item in my_list: 
+    #     if (item in freq): 
+    #         freq[item] += 1
+    #     else: 
+    #         freq[item] = 1
+  
+    # for key, value in freq.items(): 
+    #     print ("% d : % d"%(key, value)) 
+
+####################################################
+####################################################
+
+
     # MAP CHART ROUTE
     # @TODO route for the map chart
 # THE CSS STYLE IS JUST A DEMO
