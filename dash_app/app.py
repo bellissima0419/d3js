@@ -128,7 +128,7 @@ def languages_gender():
 @app.route("/dbgen")
 def db_gender():
     """
-     Return a list of language use frequency by gender
+     Return a list of db's use frequency by gender
     """
 
     queries = {
@@ -152,8 +152,38 @@ def db_gender():
         }
     return get_tech_tools(queries)
 
+@app.route("/miscgen")
+def misc_tech_gender():
+    """
+     Return a list of MiscTech use frequency by gender
+    """
+
+    queries = {
+            "man": '''
+                SELECT MiscTechWorkedWith, COUNT(MiscTechWorkedWith)
+                FROM jso11k WHERE Gender = 'Man' and MiscTechWorkedWith > 0
+                GROUP BY MiscTechWorkedWith ORDER BY COUNT(MiscTechWorkedWith) DESC
+            ''',
+            "woman": '''
+                SELECT MiscTechWorkedWith, COUNT(MiscTechWorkedWith)
+                FROM jso11k
+                WHERE Gender = 'Woman' and MiscTechWorkedWith > 0
+                GROUP BY MiscTechWorkedWith ORDER BY COUNT(MiscTechWorkedWith) DESC
+            ''',
+            "other": '''
+                SELECT MiscTechWorkedWith, COUNT(MiscTechWorkedWith)
+                FROM jso11k
+                WHERE Gender NOT IN ('Man', 'Woman') and MiscTechWorkedWith > 0
+                GROUP BY MiscTechWorkedWith ORDER BY COUNT(MiscTechWorkedWith) DESC
+            '''
+        }
+
+    return get_tech_tools(queries)
+
+# ==============================
 if __name__ == "__main__":
     app.run()
+# ===============================
 
 
 
