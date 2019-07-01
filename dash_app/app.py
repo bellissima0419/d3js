@@ -23,7 +23,6 @@ def names():
     column_names = [i[1] for i in rows]
     return jsonify(column_names)
 
-    # COUNTRIES API
 @app.route("/countries")
 def countries():
     """
@@ -52,8 +51,6 @@ def countries():
 
     return jsonify(country_data)
 
-####################################################
-####################################################
 
 @app.route("/genders")
 def genders():
@@ -76,8 +73,7 @@ def genders():
         gender_data.append(temp_dict)
 
     return jsonify(gender_data)
-####################################################
-####################################################
+
 
 @app.route("/languagesGender")
 def languages_gender():
@@ -128,6 +124,34 @@ def languages_gender():
     
     return jsonify(languages_by_gender)
 
+
+####################################################
+@app.route("/mapChart")
+def mapChart():
+    """Return the mapChart page."""
+    return render_template("mapChart.html")
+
+@app.route("/lineChart")
+def lineChart():
+    """Return the lineChart page."""
+    return render_template("lineChart.html")
+
+
+@app.route("/donut")
+def donut():
+    """Return the lineChart page."""
+    return render_template("donutChart.html")
+
+@app.route("/barChart")
+def barChart():
+    """Return the barChart page."""
+    return render_template("barChart.html")
+
+if __name__ == "__main__":
+    app.run()
+
+
+####################################################
     # def CountFrequency(my_list): 
     # # Creating an empty dictionary
       
@@ -140,87 +164,6 @@ def languages_gender():
   
     # for key, value in freq.items(): 
     #     print ("% d : % d"%(key, value)) 
-
-####################################################
-####################################################
-
-
-    # MAP CHART ROUTE
-    # @TODO route for the map chart
-# THE CSS STYLE IS JUST A DEMO
-@app.route("/mapChart")
-def mapChart():
-    """Return the mapChart page."""
-    return render_template("mapChart.html")
-###################################################
-####################################################
-    # LINE CHART ROUTE
-    # @TODO route for the LINE chart
-# THE CSS STYLE IS JUST A DEMO
-@app.route("/lineChart")
-def lineChart():
-    """Return the lineChart page."""
-    return render_template("lineChart.html")
-
-####################################################
-####################################################
-    # LINE CHART ROUTE
-    # @TODO route for the donutChart chart
-# THE CSS STYLE IS JUST A DEMO
-@app.route("/donutChart")
-def donutChart():
-    """Return the lineChart page."""
-    return render_template("donutChart.html")
-    
-####################################################
-####################################################
-
-    # BAR CHART ROUTE
-    # @TODO route for the  BAR chart
-# THE CSS STYLE IS JUST A DEMO
-@app.route("/barChart")
-def barChart():
-    """Return the barChart page."""
-    return render_template("barChart.html")####################################################
-
-if __name__ == "__main__":
-    app.run()
-
-####################################################
-####################################################
-####################################################
-####################################################
-####################################################
-####################################################
-
-
-####################################################
-    # cols = '''
-    #     SELECT name, sql FROM sqlite_master
-    #     WHERE type='table' AND name = 'jso11k'
-    # '''
-    # cur.execute(cols)
-    # rows = cur.fetchall()
-    # col_string = rows[0][1]
-    # pattern = r'`([A-Za-z0-9]*)`'
-    # column_names = re.findall(pattern, col_string)[:-1]
-
-    # return jsonify(column_names)
-####################################################
-
-# import pandas as pd
-# import numpy as np
-# from flask import Flask, jsonify, render_template
-# import sqlite3
-# import re
-
-# app = Flask(__name__)
-
-
-# @app.route("/")
-# def index():
-#     """Return the homepage."""
-#     return render_template("index.html")
 
 
 # @app.route("/columns")
@@ -242,32 +185,3 @@ if __name__ == "__main__":
 
 #     return jsonify(column_names)
 
-
-# #  SEPARETE ROUTES FOR EACH CHART WHILE IN DEVELOPMENT
-
-# ####################################################
-#     # MAP CHART ROUTE
-#     # @TODO route for the map chart
-# # @app.route("/map")
-# ####################################################
-
-# ####################################################
-#     # DONUT CHART ROUTE
-#     # @TODO route for the DONUT chart
-# # @app.route("/donut")
-# ####################################################
-
-# ####################################################
-#     # LINE CHART ROUTE
-#     # @TODO route for the LINE chart
-# # @app.route("/line")
-# ####################################################
-
-# ####################################################
-#     # DONUT CHART ROUTE
-#     # @TODO route for the DONUT chart
-# # @app.route("/bar")
-# ####################################################
-
-# if __name__ == "__main__":
-#     app.run()

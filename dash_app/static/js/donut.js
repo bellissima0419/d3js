@@ -1,6 +1,5 @@
 // var dimensions = { height: 500, width: 500, radius: 200 };
-// var center = { x: (dimensions.width / 2 + 5), y: (dimensions.height / 2 + 5)};
-
+// var center = { x: (dimensions.width / 2 + 5), y: (dimensions.height / 2 + 5)}
 var dimensions = { height: 300, width: 300, radius: 150 };
 var center = { x: (dimensions.width / 2 + 5), y: (dimensions.height / 2 + 5)};
 
