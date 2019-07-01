@@ -108,7 +108,7 @@ def languages_gender():
             "man": '''
                 SELECT LanguageWorkedWith, COUNT(LanguageWorkedWith)
                 FROM jso11k WHERE Gender = 'Man' and LanguageWorkedWith > 0
-                GROUP BY LanguageWorkedWith ORDER BY COUNT(LanguageWorkedWith)
+                GROUP BY LanguageWorkedWith ORDER BY COUNT(LanguageWorkedWith) DESC
             ''',
             "woman": '''
                 SELECT LanguageWorkedWith, COUNT(LanguageWorkedWith)
@@ -125,8 +125,42 @@ def languages_gender():
         }
     return get_tech_tools(queries)
 
+@app.route("/dbgen")
+def db_gender():
+    """
+     Return a list of language use frequency by gender
+    """
 
-####################################################
+    queries = {
+            "man": '''
+                SELECT DatabaseWorkedWith, COUNT(DatabaseWorkedWith)
+                FROM jso11k WHERE Gender = 'Man' and DatabaseWorkedWith > 0
+                GROUP BY DatabaseWorkedWith ORDER BY COUNT(DatabaseWorkedWith) DESC
+            ''',
+            "woman": '''
+                SELECT DatabaseWorkedWith, COUNT(DatabaseWorkedWith)
+                FROM jso11k
+                WHERE Gender = 'Woman' and DatabaseWorkedWith > 0
+                GROUP BY DatabaseWorkedWith ORDER BY COUNT(DatabaseWorkedWith) DESC
+            ''',
+            "other": '''
+                SELECT DatabaseWorkedWith, COUNT(DatabaseWorkedWith)
+                FROM jso11k
+                WHERE Gender NOT IN ('Man', 'Woman') and DatabaseWorkedWith > 0
+                GROUP BY DatabaseWorkedWith ORDER BY COUNT(DatabaseWorkedWith) DESC
+            '''
+        }
+    return get_tech_tools(queries)
+
+if __name__ == "__main__":
+    app.run()
+
+
+
+# f"SELECT {db_col}, COUNT({db_col}) FROM jso11k WHERE Gender = {gender} and {db_col} > 0 GROUP BY {db_col} ORDER BY COUNT({Databasedb_colWorkedWith}) DESC"
+
+
+# ####################################################
 # @app.route("/mapChart")
 # def mapChart():
 #     """Return the mapChart page."""
@@ -153,8 +187,7 @@ def languages_gender():
 #     """Return the barChart page."""
 #     return render_template("barChart.html")
 
-if __name__ == "__main__":
-    app.run()
+
 
 
 ####################################################
@@ -190,3 +223,40 @@ if __name__ == "__main__":
 #     column_names = re.findall(pattern, col_string)[:-1]
 
 #     return jsonify(column_names)
+
+
+
+# f"SELECT {db_col}, COUNT({db_col}) FROM jso11k WHERE Gender = {gender} and {db_col} > 0 GROUP BY {db_col} ORDER BY COUNT({db_col}) DESC"
+
+# def get_tech_tools(db_col):
+
+#     conn = sqlite3.connect("dash_app/db/js_overload.sqlite")
+#     cur = conn.cursor()
+
+#     tech_tools_by_gender = []
+#     query_obj = {}
+#     genders = ['Man', 'Woman'] 
+
+#     for gender in genders:
+#         query_obj[gender] = (f"SELECT {str(db_col)}, COUNT({str(db_col)}) FROM jso11k " f"WHERE Gender = {gender} and {str(db_col)} > 0 GROUP BY {str(db_col)} ORDER "
+#         f"BY COUNT({str(db_col)}) DESC")
+
+
+#     for key, value in qery_obj.items():
+
+#         cur.execute(value)
+#         rows = cur.fetchall()
+
+#         tech_tool_freq = {}
+        
+#         for row in rows:
+#             languages = row[0].split(';')   
+#             for item in languages:
+#                 if item in tech_tool_freq:
+#                     tech_tool_freq[item] += int(row[1])
+#                 else:
+#                     tech_tool_freq[item] = int(row[1])
+                
+#         tech_tools_by_gender.append({key: tech_tool_freq})
+    
+#     return jsonify(tech_tools_by_gender)
