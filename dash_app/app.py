@@ -140,7 +140,12 @@ def lineChart():
 @app.route("/donut")
 def donut():
     """Return the lineChart page."""
-    return render_template("donutChart.html")
+    return render_template("donut.html")
+
+@app.route("/donut2")
+def donut2():
+    """Return the lineChart page."""
+    return render_template("donut2.html")
 
 @app.route("/barChart")
 def barChart():
