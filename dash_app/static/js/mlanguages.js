@@ -5,7 +5,6 @@ var center = { x: (dimensions.width / 2 + 5), y: (dimensions.height / 2 + 5)}
 // ==================================================
 // var dimensions = { height: 300, width: 300, radius: 150 };
 // var center = { x: (dimensions.width / 2 + 5), y: (dimensions.height / 2 + 5)};
-
 // create svg container
 var svg = d3.select('.donut')
   .append('svg')

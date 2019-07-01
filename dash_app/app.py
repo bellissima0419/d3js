@@ -186,15 +186,15 @@ def misc_tech_gender():
 
     return get_tech_tools(queries)
 
-@app.route("/donut")
-def donut():
-    """Return the donut page."""
-    return render_template("donut.html")
+@app.route("/countryDonut")
+def countryDonut():
+    """Return count of respondents per countries page."""
+    return render_template("countries.html")
 
-@app.route("/donut2")
-def donut2():
-    """Return the donut2 page."""
-    return render_template("donut2.html")
+@app.route("/mlanguages")
+def mlanguages():
+    """Return the language popularity in males page."""
+    return render_template("mlanguages.html")
 
 
 if __name__ == "__main__":
