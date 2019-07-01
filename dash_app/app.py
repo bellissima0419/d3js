@@ -75,7 +75,7 @@ def genders():
     return jsonify(gender_data)
 
 
-@app.route("/languagesGender")
+@app.route("/langen")
 def languages_gender():
     """
      Return a list of language use frequency by gender
