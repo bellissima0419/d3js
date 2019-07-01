@@ -74,15 +74,36 @@ def genders():
 
     return jsonify(gender_data)
 
+def get_tech_tools(qery_obj):
+
+    conn = sqlite3.connect("dash_app/db/js_overload.sqlite")
+    cur = conn.cursor()
+    tech_tools_by_gender = []
+
+    for key, value in qery_obj.items():
+
+        cur.execute(value)
+        rows = cur.fetchall()
+
+        tech_tool_freq = {}
+        
+        for row in rows:
+            languages = row[0].split(';')   
+            for item in languages:
+                if item in tech_tool_freq:
+                    tech_tool_freq[item] += int(row[1])
+                else:
+                    tech_tool_freq[item] = int(row[1])
+                
+        tech_tools_by_gender.append({key: tech_tool_freq})
+    
+    return jsonify(tech_tools_by_gender)
 
 @app.route("/langen")
 def languages_gender():
     """
      Return a list of language use frequency by gender
     """
-    conn = sqlite3.connect("dash_app/db/js_overload.sqlite")
-    cur = conn.cursor()
-
     queries = {
             "man": '''
                 SELECT LanguageWorkedWith, COUNT(LanguageWorkedWith)
@@ -102,55 +123,35 @@ def languages_gender():
                 GROUP BY LanguageWorkedWith ORDER BY COUNT(LanguageWorkedWith) DESC
             '''
         }
-
-    languages_by_gender = []
-
-    for key, value in queries.items():
-
-        cur.execute(value)
-        rows = cur.fetchall()
-
-        language_freq = {}
-        
-        for row in rows:
-            languages = row[0].split(';')   
-            for item in languages:
-                if item in language_freq:
-                    language_freq[item] += int(row[1])
-                else:
-                    language_freq[item] = int(row[1])
-                
-        languages_by_gender.append({key: language_freq})
-    
-    return jsonify(languages_by_gender)
+    return get_tech_tools(queries)
 
 
 ####################################################
-@app.route("/mapChart")
-def mapChart():
-    """Return the mapChart page."""
-    return render_template("mapChart.html")
+# @app.route("/mapChart")
+# def mapChart():
+#     """Return the mapChart page."""
+#     return render_template("mapChart.html")
 
-@app.route("/lineChart")
-def lineChart():
-    """Return the lineChart page."""
-    return render_template("lineChart.html")
+# @app.route("/lineChart")
+# def lineChart():
+#     """Return the lineChart page."""
+#     return render_template("lineChart.html")
 
 
-@app.route("/donut")
-def donut():
-    """Return the lineChart page."""
-    return render_template("donut.html")
+# @app.route("/donut")
+# def donut():
+#     """Return the lineChart page."""
+#     return render_template("donut.html")
 
-@app.route("/donut2")
-def donut2():
-    """Return the lineChart page."""
-    return render_template("donut2.html")
+# @app.route("/donut2")
+# def donut2():
+#     """Return the lineChart page."""
+#     return render_template("donut2.html")
 
-@app.route("/barChart")
-def barChart():
-    """Return the barChart page."""
-    return render_template("barChart.html")
+# @app.route("/barChart")
+# def barChart():
+#     """Return the barChart page."""
+#     return render_template("barChart.html")
 
 if __name__ == "__main__":
     app.run()
@@ -189,4 +190,3 @@ if __name__ == "__main__":
 #     column_names = re.findall(pattern, col_string)[:-1]
 
 #     return jsonify(column_names)
-
