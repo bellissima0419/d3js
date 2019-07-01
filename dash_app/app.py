@@ -121,6 +121,12 @@ def languages_gender():
                 FROM jso11k
                 WHERE Gender NOT IN ('Man', 'Woman') and LanguageWorkedWith > 0
                 GROUP BY LanguageWorkedWith ORDER BY COUNT(LanguageWorkedWith) DESC
+            ''',
+                "all_genders": '''
+                SELECT LanguageWorkedWith, COUNT(LanguageWorkedWith)
+                FROM jso11k
+                WHERE LanguageWorkedWith > 0
+                GROUP BY LanguageWorkedWith ORDER BY COUNT(LanguageWorkedWith) DESC
             '''
         }
     return get_tech_tools(queries)
@@ -180,7 +186,17 @@ def misc_tech_gender():
 
     return get_tech_tools(queries)
 
-# ==============================
+@app.route("/donut")
+def donut():
+    """Return the donut page."""
+    return render_template("donut.html")
+
+@app.route("/donut2")
+def donut2():
+    """Return the donut2 page."""
+    return render_template("donut2.html")
+
+
 if __name__ == "__main__":
     app.run()
 # ===============================

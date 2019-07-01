@@ -14,7 +14,7 @@ var graph = svg.append('g')
   // translates the graph group to the middle of the svg container
 
 var pie = d3.pie()
-  .sort(null)
+  // .sort(null)
   .value(d => d.respondentCount);
   // the value we are evaluating to create the pie angles
 
@@ -123,40 +123,25 @@ var update = (data) => {
 var top10Countries = [];
 
 d3.json('/countries').then( (data) =>  {
-  // console.log('data: ', data);
-  var total_respondents = 0;
-  data.forEach(el => total_respondents += el.respondentCount)
-  // console.log("total_respondents: ", total_respondents);
-  // console.log("data: ", data);
+    // console.log('data: ', data);
+    var total_respondents = 0;
+    data.forEach(el => total_respondents += el.respondentCount)
+    // console.log("total_respondents: ", total_respondents);
+    // console.log("data: ", data);
 
-  data.forEach(el => el["percentage"] = +(el.respondentCount/total_respondents*100).toFixed(2))
-  // console.log(data.slice(0,10))
+    data.forEach(el => el["percentage"] = +(el.respondentCount/total_respondents*100).toFixed(2))
+    // console.log(data.slice(0,10))
 
-  var top10 = data.slice(0, 10)
-  // console.log('top10 : ', top10);
+    var top10 = data.slice(0, 10)
+    // console.log('top10 : ', top10);
 
-  top10.forEach(element => {
-    top10Countries.push(element)
-  });
+    top10.forEach(element => {
+      top10Countries.push(element)
+    });
+    
+    update(top10Countries)
+    console.log('top10Countries: ', top10Countries);
 
-
-  // console.log('top10Countries : ', top10Countries);
-  // console.log('top10[0]: ', top10[0]);
-  // console.log('top10[0].country: ', top10[0].country);
-  
-  update(top10Countries)
-  console.log('top10Countries[0]: ', top10Countries[0]);
-
-  // setTimeout(function(){ 
-  //   alert("Click me to update data")
-  //   top10Countries.shift()
-  //   // let first = top10Countries[0].respondentCount
-  //   // let second = top10Countries[1].respondentCount
-  //   // top10Countries[0].respondentCount = second
-  //   // top10Countries[1].respondentCount = first;
-  //   update(top10Countries)
-  //   console.log('top10Countries: ', top10Countries);
-  // }, 2000);
 
 });
 
