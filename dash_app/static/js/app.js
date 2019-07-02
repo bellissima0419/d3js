@@ -33,7 +33,7 @@ function buildDonut(url, selector) {
   
   var arcPath = d3.arc()
     .outerRadius(dimensions.radius)
-    .innerRadius(dimensions.radius / 1.3);
+    .innerRadius(dimensions.radius / 1.7);
   
   // ordinal colour scale
   var  color = d3.scaleOrdinal(d3["schemeCategory10"]); 
@@ -172,7 +172,6 @@ function buildDonut(url, selector) {
       return arcPath(i(t));
     };
   };
-  
 
   // envent handlers
   var handleMouseOver = (d,i,n) => {
