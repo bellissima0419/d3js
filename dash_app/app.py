@@ -94,15 +94,6 @@ def sojobs():
     response = get_data(query)
     return jsonify(response)
 
-# @app.route("/api/socialmedia")
-# def socialmedia():
-
-#     query = "SELECT SocialMedia, COUNT(SocialMedia) FROM jso11k WHERE SocialMedia IS NOT NULL GROUP BY SocialMedia"
-#     response = get_data(query)
-#     return jsonify(response)
-
-
-
 
 @app.route("/api/socialmedia")
 def socialmedia():
@@ -110,10 +101,6 @@ def socialmedia():
     query = "SELECT SocialMedia, COUNT(SocialMedia) FROM jso11k WHERE SocialMedia IS NOT NULL GROUP BY SocialMedia"
     response = get_data(query)
     return jsonify(response)
-
-
-
-
 
 
 @app.route("/api/edlevel")
@@ -255,20 +242,20 @@ def undergradmajor():
 
 # ===============================
 # ===============================
-@app.route("/impSyn")
-def impSyn():
+# @app.route("/impSyn")
+# def impSyn():
 
-    return render_template("impSyn.html")
+#     return render_template("impSyn.html")
 
-@app.route("/countries")
-def countries():
-    """Return count of respondents per countries page."""
-    return render_template("countries.html")
+# @app.route("/countries")
+# def countries():
+#     """Return count of respondents per countries page."""
+#     return render_template("countries.html")
 
-@app.route("/languages")
-def languages():
-    """Return the language popularity in males page."""
-    return render_template("languages.html")
+# @app.route("/languages")
+# def languages():
+#     """Return the language popularity in males page."""
+#     return render_template("languages.html")
 
 
 if __name__ == "__main__":

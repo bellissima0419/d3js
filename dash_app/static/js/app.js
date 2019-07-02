@@ -165,6 +165,7 @@ function buildDonut(url, selector) {
     };
   };
   
+
   // envent handlers
   var handleMouseOver = (d,i,n) => {
     //console.log(n[i]);
@@ -194,7 +195,7 @@ function buildDonut(url, selector) {
   }
 }
 
-// buildDonut('/api/socialmedia', '#socialmedia')
+buildDonut('/api/socialmedia', '#socialmedia')
 
 buildDonut('/api/gender', '#gender')
 buildDonut('/api/trans', '#trans')

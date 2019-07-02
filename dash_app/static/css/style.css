@@ -19,11 +19,12 @@ body {
 
 .pie text {
   font-family: "Verdana";
-  fill: #888;
+  /* fill: #888; */
+  fill: #fff !important
 }
 
 .pie .name-text{
-  font-size: 1em;
+  font-size: 1em !important;
 }
 
 .pie .value-text{
