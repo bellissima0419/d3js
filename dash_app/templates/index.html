@@ -1,76 +1,71 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="shortcut icon" href="../static/assets/images/favicon.ico" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <style>
-    h2, p{
-      margin: 10px 0;
-    }
-    header{
-      margin-bottom: 40px;
-    }
-  </style>
-  <title>Donut Chart</title>
-</head>
-<body class="orange lighten-2">
+  <link rel="stylesheet" href="../static/css/style.css">
 
-  <header class="indigo lighten-1 section">
-    <h4 class="center white-text">Stack Overflow Annual Survey</h4>
-    <p class="flow-text grey-text center text-lighten-2">D3JS HOME</p>
+  <style>
+
+  </style>
+  <title>ImpSyn</title>
+</head>
+<!-- <body class="indigo"> -->
+<body class="grey darken-4">
+
+  <!-- <header class="indigo darken-1 section"> -->
+  <header class="section grey darken-3">
+    <!-- <h4 class="center white-text">Stack Overflow Annual Survey</h4> -->
+    <p class="flow-text grey-text center text-lighten-2">D3.js Donut Chart</p>
   </header>
 
   <div class="container section">
-    <div class="row">
-      <div class="col s12 m12">
-
+      <div class="row">
+        <div class="col s12 m12">
+          <div id="impSyn"></div>
+        </div>
       </div>
-      <div class="col s12 m12">
-        <div class="donut"></div>
+      <div class="row">
+        <div class="col s12 m12">
+          <div id="dependents"></div>
+        </div>
       </div>
-    </div>
+      <div class="row">
+        <div class="col s12 m12">
+          <div id="donut"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 m12">
+          <div id="donut"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 m12">
+          <div id="donut"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 m12">
+          <div id="donut"></div>
+        </div>
+      </div>
   </div>
+
   
   <!-- Compiled and minified JavaScript -->
-  
 
-  <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-firestore.js"></script>
-  <script>
-    // Initialize Firebase
-    // var config = {
-    //   apiKey: "AIzaSyBimZS4KHtAzEICqMyph25tUEpKA2lJ1e0",
-    //   authDomain: "d3-testing-nn.firebaseapp.com",
-    //   databaseURL: "https://d3-testing-nn.firebaseio.com",
-    //   projectId: "d3-testing-nn",
-    //   storageBucket: "d3-testing-nn.appspot.com",
-    //   messagingSenderId: "450687416936"
-    // };
-    // firebase.initializeApp(config);
-    // const db = firebase.firestore();
-    // const settings = {timestampsInSnapshots: true};
-    // db.settings(settings);
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
 
-    var firebaseConfig = {
-      apiKey: "AIzaSyC4yFLYsYNqiu1Y5qUsax_inDPPYAsCFAs",
-      authDomain: "d3firebase-8b7f9.firebaseapp.com",
-      databaseURL: "https://d3firebase-8b7f9.firebaseio.com",
-      projectId: "d3firebase-8b7f9",
-      storageBucket: "d3firebase-8b7f9.appspot.com",
-      messagingSenderId: "432025399272",
-      appId: "1:432025399272:web:e5979fe041736e5e"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-    db.settings({ timestampsInSnapshots: true });
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.js"></script>
-  <!-- <script src="../static/js/donutChart.js"></script> -->
-  <!-- <script src="graph.js"></script> -->
+  <script src="../static/js/app.js"></script>
+  <!-- <script src="index.js"></script> -->
 </body>
 </html>
+

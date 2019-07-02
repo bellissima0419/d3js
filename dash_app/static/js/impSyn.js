@@ -1,19 +1,22 @@
 // DONUT CHART: PROGRAMING key POPULARITY BY GENDER
 
-function buildDonut(url) {
+function buildDonut(url, selector) {
   var dimensions = { height: 800, width: 500, radius: 200 };
   var center = { x: (dimensions.width / 2 + 5), y: (dimensions.height / 2 + 5)}
   // ==================================================
   // var dimensions = { height: 300, width: 300, radius: 150 };
   // var center = { x: (dimensions.width / 2 + 5), y: (dimensions.height / 2 + 5)};
   // create svg container
-  var svg = d3.select('.donut')
+  var svg = d3.select(selector)
     .append('svg')
-    .attr('width', dimensions.width + 250)
-    .attr('height', dimensions.height + 150);
-  
+    .attr('width', dimensions.width + 550)
+    .attr('height', dimensions.height - 200);
+    
+    // translate(255, 405)
+
+
   var graph = svg.append('g')
-    .attr("transform", `translate(${center.x}, ${center.y})`);
+    .attr("transform", `translate(${center.x - 50}, ${center.y - 200})`);
     // translates the graph group to the middle of the svg container
   
   var pie = d3.pie()
@@ -191,8 +194,8 @@ function buildDonut(url) {
   }
 }
 
-route = '/api/imp_syn'
-buildDonut(route)
+// route = '/api/imp_syn'
+buildDonut('/api/imp_syn', '#impSyn')
 
 
 
