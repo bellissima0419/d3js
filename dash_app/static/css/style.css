@@ -47,3 +47,7 @@ header{
   color: #e55039;
   font-size: 0.8em;
 }
+
+.sql{
+  color: #e55039 !important
+}
