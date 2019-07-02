@@ -32,7 +32,7 @@ function buildDonut(url, selector) {
   
   // legend setup
   var legendGroup = svg.append('g')
-    .attr('transform', `translate(${dimensions.width + 50}, 10)`)
+    .attr('transform', `translate(${dimensions.width - 50}, 10)`)
   
   var legend = d3.legendColor()
     // .shape('circle')
@@ -43,9 +43,9 @@ function buildDonut(url, selector) {
   var tip = d3.tip()
     .attr('class', 'tip card')
     .html(d => {
-      let content = `<div class="name">${d.data.key}</div>`;
-      content += `<div class="cost">${d.data.percentage} %</div>`;
-      content += `<div class="delete">${d.data.value} Respondents</div>`
+      let content = `<div class="key">${d.data.key}</div>`;
+      content += `<div class="percentage">${d.data.percentage} %</div>`;
+      content += `<div class="respondents">${d.data.value} Respondents</div>`
       return content;
     });
   
@@ -61,7 +61,7 @@ function buildDonut(url, selector) {
     legendGroup.call(legend);
     legendGroup.selectAll('text').attr('fill', 'white');
     
-    // join enhanced (pie) data to path elements
+    // join modified (pie) data to path elements
     var paths = graph.selectAll('path')
       .data(pie(data));
         // console.log('pie(data): ',pie(data));
