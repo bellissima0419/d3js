@@ -1,4 +1,4 @@
-// DONUT CHART: PROGRAMING LANGUAGE POPULARITY BY GENDER
+// DONUT CHART: PROGRAMING key POPULARITY BY GENDER
 
 var dimensions = { height: 800, width: 500, radius: 200 };
 var center = { x: (dimensions.width / 2 + 5), y: (dimensions.height / 2 + 5)}
@@ -17,7 +17,7 @@ var graph = svg.append('g')
 
 var pie = d3.pie()
   .sort(null)
-  .value(d => d.count);
+  .value(d => d.value);
   // the value we are evaluating to create the pie angles
 
 var arcPath = d3.arc()
@@ -40,9 +40,9 @@ var legend = d3.legendColor()
 var tip = d3.tip()
   .attr('class', 'tip card')
   .html(d => {
-    let content = `<div class="name">${d.data.language}</div>`;
+    let content = `<div class="name">${d.data.key}</div>`;
     content += `<div class="cost">${d.data.percentage} %</div>`;
-    content += `<div class="delete">${d.data.count} Respondents</div>`
+    content += `<div class="delete">${d.data.value} Respondents</div>`
     return content;
   });
 
@@ -52,7 +52,7 @@ graph.call(tip);
 var update = (data) => {
 
   // update color scale domain
-  color.domain(data.map(d => d.language))
+  color.domain(data.map(d => d.key))
 
     // update legend
   legendGroup.call(legend);
@@ -70,26 +70,19 @@ var update = (data) => {
     .attrTween("d", arcTweenExit)
     .remove();
 
-  // handle the current DOM path updates
-  // paths.attr('d', arcPath)
-  //   .transition().duration(750)
-  //   .attrTween('d', arcTweenUpdate)
-
   paths.transition().duration(750)
   .attrTween("d", arcTweenUpdate);
 
   paths.enter()
     .append('path')
       .attr('class', 'arc')
-      // .attr('d', d => arcPath(d)) //  .attr('d', arcPath) //
       .attr('stroke', '#ebebeb')
       .attr('stroke-width', 1.1)
       .attr('d', arcPath)
-      .attr('fill', d => color(d.data.language))
+      .attr('fill', d => color(d.data.key))
       .each(function(d){ this._current = d })
       .transition().duration(750).attrTween("d", arcTweenEnter);
       
-
   // add events
   graph.selectAll('path')
     .on('mouseover', (d,i,n) => {
@@ -105,36 +98,37 @@ var update = (data) => {
 };
 
 // data array to hold the api data
-var languageArray = [];
+var data_array = [];
 
 // visit the api to retrieve the data
-d3.json('/langen').then( (data) =>  {
-  // console.log('data: ', data[0]['all_genders']);
-    var language_total = 0;
-    var languages = data[0]['all_genders']
-    console.log('languages: ', languages);
+d3.json('/api/imp_syn').then( data =>  {
+    // console.log('data: ', data);
+    var counter = 0;
 
-    Object.values(languages).forEach(value => language_total += value);
-    console.log('language_total: ', language_total);
-
-    Object.entries(languages).forEach(([key, value]) => {
-      tempDict = {}
-      tempDict['language'] = key
-      tempDict['percentage'] = +(value/language_total*100).toFixed(2)
-      tempDict['count'] = value
-      languageArray.push(tempDict)
+    data.forEach(obj => {
+    Object.values(obj).forEach(val => counter += val);
+  });
+    console.log(counter)
+    
+    data.forEach(obj => {
+      Object.entries(obj).forEach(([key,value]) => {
+        tempDict = {}
+        tempDict['key'] = key
+        tempDict['value'] = value
+        tempDict['percentage'] = +(value/counter*100).toFixed(2)
+        data_array.push(tempDict)
+      } );
     });
 
-    languageArray.sort(function(a, b){
-      return b.count-a.count
+    console.log('data_array: ', data_array);
+
+    data_array.sort(function(a, b){
+      return b.value-a.value
     })
+    data_array.forEach(el => console.log(el.value))
+    console.log('soerted data_array: ', data_array);
 
-    console.log('soerted languageArray: ', languageArray);
-
-
-    update(languageArray)
-    // console.log('languageArray: ', languageArray)
-
+    update(data_array)
 });
 
 var arcTweenEnter = (d) => {
@@ -179,14 +173,14 @@ var handleMouseOut = (d,i,n) => {
   // console.log(n[i]);
   d3.select(n[i])
     .transition('changeSliceFill').duration(300)
-      .attr('fill', color(d.data.language));
+      .attr('fill', color(d.data.key));
 };
 
 var handleClick = d => {
   // console.log('d inside click: ', d) 
   // console.log('top10Countries: ', top10Countries);
 
-  var newData = languageArray.filter(c => c.language !== d.data.language)
+  var newData = data_array.filter(c => c.key !== d.data.key)
 
   // console.log('top10Countries', top10Countries);
   // console.log('newData', newData);
