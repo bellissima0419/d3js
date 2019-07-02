@@ -194,13 +194,7 @@ function buildDonut(url, selector) {
   }
 }
 
-// apiRoutes ['gender','trans', 'dependents', 'edlevel','employment',
-// 'careersat', 'jobsat', 'jobseek', 'mgrmoney', 'mgrwant', 'workplan',
-// 'workloc', 'sojobs', 'soaccount', 'extraversion', 'socialmedia',
-// 'opsys', 'blockchainis', 'impsyn','fizzbuzz', 'offon','betterlife'
-// ]
 
-// route = '/api/imp_syn'
 buildDonut('/api/gender', '#gender')
 buildDonut('/api/trans', '#trans')
 buildDonut('/api/dependents', '#dependents')
@@ -224,4 +218,20 @@ buildDonut('/api/fizzbuzz', '#fizzbuzz')
 buildDonut('/api/offon', '#offon')
 buildDonut('/api/betterlife', '#betterlife')
 
+// var apiRoutes = ['gender','trans', 'dependents', 'edlevel','employment',
+// 'careersat', 'jobsat', 'jobseek', 'mgrmoney', 'mgrwant', 'workplan',
+// 'workloc', 'sojobs', 'soaccount', 'extraversion', 'socialmedia',
+// 'opsys', 'blockchainis', 'impsyn','fizzbuzz', 'offon','betterlife'
+// ]
 
+// for (let index = 0; index < apiRoutes.length; index++) {
+//   const element = apiRoutes[index];
+//   const params = `"/api/${element}", "#${element}"`
+//   buildDonut(params)
+  
+// }
+
+// apiRoutes.forEach(route => {
+//     var params = `/api/${route}, #${route}`
+//     buildDonut(params)
+// })
