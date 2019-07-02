@@ -194,8 +194,34 @@ function buildDonut(url, selector) {
   }
 }
 
+// apiRoutes ['gender','trans', 'dependents', 'edlevel','employment',
+// 'careersat', 'jobsat', 'jobseek', 'mgrmoney', 'mgrwant', 'workplan',
+// 'workloc', 'sojobs', 'soaccount', 'extraversion', 'socialmedia',
+// 'opsys', 'blockchainis', 'impsyn','fizzbuzz', 'offon','betterlife'
+// ]
+
 // route = '/api/imp_syn'
-buildDonut('/api/imp_syn', '#impsyn')
+buildDonut('/api/gender', '#gender')
+buildDonut('/api/trans', '#trans')
 buildDonut('/api/dependents', '#dependents')
+buildDonut('/api/edlevel', '#edlevel')
+buildDonut('/api/employment', '#employment')
+buildDonut('/api/careersat', '#careersat')
+buildDonut('/api/jobsat', '#jobsat')
+buildDonut('/api/jobseek', '#jobseek')
+buildDonut('/api/mgrmoney', '#mgrmoney')
+buildDonut('/api/mgrwant', '#mgrwant')
+buildDonut('/api/workplan', '#workplan')
+buildDonut('/api/workloc', '#workloc')
+buildDonut('/api/sojobs', '#sojobs')
+buildDonut('/api/soaccount', '#soaccount')
+buildDonut('/api/extraversion', '#extraversion')
+buildDonut('/api/socialmedia', '#socialmedia')
+buildDonut('/api/opsys', '#opsys')
+buildDonut('/api/blockchainis', '#blockchainis')
+buildDonut('/api/impsyn', '#impsyn')
+buildDonut('/api/fizzbuzz', '#fizzbuzz')
+buildDonut('/api/offon', '#offon')
+buildDonut('/api/betterlife', '#betterlife')
 
 

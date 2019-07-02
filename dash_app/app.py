@@ -54,8 +54,8 @@ def get_data(query_string):
         data.append(temp_dict)
     return data
 
-@app.route("/api/imp_syn")
-def imp_syn_api():
+@app.route("/api/impsyn")
+def impsyn():
     "Impostor Syndrome"
 
     query = "SELECT ImpSyn, COUNT(ImpSyn) FROM jso11k WHERE ImpSyn IS NOT NULL GROUP BY ImpSyn"
@@ -162,6 +162,12 @@ def jobseek():
     response = get_data(query)
     return jsonify(response)
 
+@app.route("/api/soaccount")
+def soaccount():
+
+    query = "SELECT SOAccount, COUNT(SOAccount) FROM jso11k WHERE SOAccount IS NOT NULL GROUP BY SOAccount"
+    response = get_data(query)
+    return jsonify(response)
 @app.route("/api/fizzbuzz")
 def fizzbuzz():
 
