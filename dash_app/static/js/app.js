@@ -116,8 +116,8 @@ function buildDonut(url, selector) {
       data.forEach(obj => {
         Object.entries(obj).forEach(([key,value]) => {
           tempDict = {}
-          tempDict['key'] = key
-          tempDict['value'] = value
+          tempDict['key'] = String(key)
+          tempDict['value'] = +value
           tempDict['percentage'] = +(value/counter*100).toFixed(2)
           data_array.push(tempDict)
         } );

@@ -94,12 +94,27 @@ def sojobs():
     response = get_data(query)
     return jsonify(response)
 
+# @app.route("/api/socialmedia")
+# def socialmedia():
+
+#     query = "SELECT SocialMedia, COUNT(SocialMedia) FROM jso11k WHERE SocialMedia IS NOT NULL GROUP BY SocialMedia"
+#     response = get_data(query)
+#     return jsonify(response)
+
+
+
+
 @app.route("/api/socialmedia")
 def socialmedia():
 
     query = "SELECT SocialMedia, COUNT(SocialMedia) FROM jso11k WHERE SocialMedia IS NOT NULL GROUP BY SocialMedia"
     response = get_data(query)
     return jsonify(response)
+
+
+
+
+
 
 @app.route("/api/edlevel")
 def edlevel():
