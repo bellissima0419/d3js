@@ -170,7 +170,7 @@ def soaccount():
     query = "SELECT SOAccount, COUNT(SOAccount) FROM jso11k WHERE SOAccount IS NOT NULL GROUP BY SOAccount"
     response = get_data(query)
     return jsonify(response)
-    
+
 @app.route("/api/fizzbuzz")
 def fizzbuzz():
 
@@ -238,25 +238,6 @@ def undergradmajor():
     query = "SELECT UndergradMajor, COUNT(UndergradMajor) FROM jso11k WHERE UndergradMajor IS NOT NULL GROUP BY UndergradMajor"
     response = get_data(query)
     return jsonify(response)
-
-
-
-# ===============================
-# ===============================
-# @app.route("/impSyn")
-# def impSyn():
-
-#     return render_template("impSyn.html")
-
-# @app.route("/countries")
-# def countries():
-#     """Return count of respondents per countries page."""
-#     return render_template("countries.html")
-
-# @app.route("/languages")
-# def languages():
-#     """Return the language popularity in males page."""
-#     return render_template("languages.html")
 
 
 if __name__ == "__main__":
