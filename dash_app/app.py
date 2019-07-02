@@ -170,6 +170,7 @@ def soaccount():
     query = "SELECT SOAccount, COUNT(SOAccount) FROM jso11k WHERE SOAccount IS NOT NULL GROUP BY SOAccount"
     response = get_data(query)
     return jsonify(response)
+    
 @app.route("/api/fizzbuzz")
 def fizzbuzz():
 

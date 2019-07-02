@@ -1,4 +1,12 @@
 // DONUT CHART: PROGRAMING key POPULARITY BY GENDER
+$( document ).ready(function(){
+  // $(".dropdown-button").dropdown();
+  $(".dropdown-trigger").dropdown();
+
+})
+
+// $(".dropdown-trigger").dropdown();
+
 
 function buildDonut(url, selector) {
   var dimensions = { height: 800, width: 500, radius: 200 };
