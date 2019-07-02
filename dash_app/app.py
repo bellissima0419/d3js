@@ -54,6 +54,15 @@ def get_data(query_string):
         data.append(temp_dict)
     return data
 
+
+@app.route("/api/sexuality")
+def sexuality():
+    
+
+    query = "SELECT Sexuality, COUNT(Sexuality) FROM jso11k WHERE Sexuality IS NOT NULL GROUP BY Sexuality"
+    response = get_data(query)
+    return jsonify(response)
+
 @app.route("/api/impsyn")
 def impsyn():
     "Impostor Syndrome"

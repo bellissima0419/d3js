@@ -202,7 +202,12 @@ function buildDonut(url, selector) {
   }
 }
 
+
+
+sexuality
+
 buildDonut('/api/socialmedia', '#socialmedia')
+buildDonut('/api/sexuality', '#sexuality')
 
 buildDonut('/api/gender', '#gender')
 buildDonut('/api/trans', '#trans')
