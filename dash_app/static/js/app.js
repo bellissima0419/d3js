@@ -179,7 +179,7 @@ function buildDonut(url, selector) {
     //console.log(n[i]);
     d3.select(n[i])
       .transition('changeSliceFill').duration(300)
-        .attr('fill', '#fff');
+        .attr('fill', 'black');
   };
   
   var handleMouseOut = (d,i,n) => {
