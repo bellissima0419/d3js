@@ -229,6 +229,14 @@ def offon():
     return jsonify(response)
 
 
+@app.route("/api/undergradmajor")
+def undergradmajor():
+
+    query = "SELECT UndergradMajor, COUNT(UndergradMajor) FROM jso11k WHERE UndergradMajor IS NOT NULL GROUP BY UndergradMajor"
+    response = get_data(query)
+    return jsonify(response)
+
+
 
 # ===============================
 # ===============================

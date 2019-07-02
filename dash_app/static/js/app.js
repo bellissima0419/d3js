@@ -217,6 +217,8 @@ buildDonut('/api/impsyn', '#impsyn')
 buildDonut('/api/fizzbuzz', '#fizzbuzz')
 buildDonut('/api/offon', '#offon')
 buildDonut('/api/betterlife', '#betterlife')
+buildDonut('/api/undergradmajor', '#undergradmajor')
+
 
 // var apiRoutes = ['gender','trans', 'dependents', 'edlevel','employment',
 // 'careersat', 'jobsat', 'jobseek', 'mgrmoney', 'mgrwant', 'workplan',
