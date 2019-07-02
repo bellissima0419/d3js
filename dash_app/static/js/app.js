@@ -14,7 +14,6 @@ function buildDonut(url, selector) {
     
     // translate(255, 405)
 
-
   var graph = svg.append('g')
     .attr("transform", `translate(${center.x - 50}, ${center.y - 200})`);
     // translates the graph group to the middle of the svg container
@@ -184,7 +183,7 @@ function buildDonut(url, selector) {
     // console.log('d inside click: ', d) 
     // console.log('top10Countries: ', top10Countries);
   
-    var newData = data_array.filter(c => c.key !== d.data.key)
+    // var newData = data_array.filter(c => c.key !== d.data.key)
   
     // console.log('top10Countries', top10Countries);
     // console.log('newData', newData);
@@ -218,6 +217,8 @@ buildDonut('/api/fizzbuzz', '#fizzbuzz')
 buildDonut('/api/offon', '#offon')
 buildDonut('/api/betterlife', '#betterlife')
 buildDonut('/api/undergradmajor', '#undergradmajor')
+buildDonut('/api/mgridiot', '#mgridiot')
+
 
 
 // var apiRoutes = ['gender','trans', 'dependents', 'edlevel','employment',
