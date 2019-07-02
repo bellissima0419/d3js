@@ -111,7 +111,7 @@ function buildDonut(url, selector) {
       data.forEach(obj => {
       Object.values(obj).forEach(val => counter += val);
     });
-      console.log(counter)
+      // console.log(counter)
       
       data.forEach(obj => {
         Object.entries(obj).forEach(([key,value]) => {
@@ -123,13 +123,14 @@ function buildDonut(url, selector) {
         } );
       });
   
-      console.log('data_array: ', data_array);
+      // console.log('data_array: ', data_array);
   
       data_array.sort(function(a, b){
         return b.value-a.value
       })
-      data_array.forEach(el => console.log(el.value))
-      console.log('soerted data_array: ', data_array);
+
+      // data_array.forEach(el => console.log(el.value))
+      console.log('sorted data_array: ', data_array);
   
       update(data_array)
   });
@@ -193,6 +194,7 @@ function buildDonut(url, selector) {
   }
 }
 
+// buildDonut('/api/socialmedia', '#socialmedia')
 
 buildDonut('/api/gender', '#gender')
 buildDonut('/api/trans', '#trans')
@@ -209,7 +211,7 @@ buildDonut('/api/workloc', '#workloc')
 buildDonut('/api/sojobs', '#sojobs')
 buildDonut('/api/soaccount', '#soaccount')
 buildDonut('/api/extraversion', '#extraversion')
-buildDonut('/api/socialmedia', '#socialmedia')
+// buildDonut('/api/socialmedia', '#socialmedia')
 buildDonut('/api/opsys', '#opsys')
 buildDonut('/api/blockchainis', '#blockchainis')
 buildDonut('/api/impsyn', '#impsyn')
@@ -218,6 +220,9 @@ buildDonut('/api/offon', '#offon')
 buildDonut('/api/betterlife', '#betterlife')
 buildDonut('/api/undergradmajor', '#undergradmajor')
 buildDonut('/api/mgridiot', '#mgridiot')
+
+buildDonut('/api/socialmedia', '#socialmedia')
+
 
 
 
