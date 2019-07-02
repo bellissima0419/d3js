@@ -1,9 +1,9 @@
 // DONUT CHART: PROGRAMING key POPULARITY BY GENDER
-$( document ).ready(function(){
-  // $(".dropdown-button").dropdown();
-  $(".dropdown-trigger").dropdown();
+// $( document ).ready(function(){
+//   // $(".dropdown-button").dropdown();
+//   $(".dropdown-trigger").dropdown();
 
-})
+// })
 
 // $(".dropdown-trigger").dropdown();
 

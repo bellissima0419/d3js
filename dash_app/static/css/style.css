@@ -13,23 +13,23 @@ body {
   /* background-color: #2a3d6f; */
 }
 
-.pie {
+/* .pie {
   margin: 20px;
-}
+} */
 
-.pie text {
+/* .pie text {
   font-family: "Verdana";
-  /* fill: #888; */
+  fill: #888;
   fill: #fff !important
-}
+} */
 
-.pie .name-text{
+/* .pie .name-text{
   font-size: 1em !important;
-}
+} */
 
-.pie .value-text{
+/* .pie .value-text{
   font-size: 3em;
-}
+} */
 
 
 h2, p{
