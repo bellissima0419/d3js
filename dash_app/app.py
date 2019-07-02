@@ -207,13 +207,20 @@ def betterlife():
     return jsonify(response)
 
 
+@app.route("/api/trans")
+def trans():
+
+    query = "SELECT Trans, COUNT(Trans) FROM jso11k WHERE Trans IS NOT NULL GROUP BY Trans"
+    response = get_data(query)
+    return jsonify(response)
+
+
 @app.route("/api/offon")
 def offon():
 
     query = "SELECT OffOn, COUNT(OffOn) FROM jso11k WHERE OffOn IS NOT NULL GROUP BY OffOn"
     response = get_data(query)
     return jsonify(response)
-
 
 
 

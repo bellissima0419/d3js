@@ -195,7 +195,7 @@ function buildDonut(url, selector) {
 }
 
 // route = '/api/imp_syn'
-buildDonut('/api/imp_syn', '#impSyn')
+buildDonut('/api/imp_syn', '#impsyn')
 buildDonut('/api/dependents', '#dependents')
 
 
