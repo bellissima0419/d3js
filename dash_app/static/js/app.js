@@ -1,19 +1,9 @@
-// DONUT CHART: PROGRAMING key POPULARITY BY GENDER
-// $( document ).ready(function(){
-//   // $(".dropdown-button").dropdown();
-//   $(".dropdown-trigger").dropdown();
-
-// })
-
-// $(".dropdown-trigger").dropdown();
-
 
 function buildDonut(url, selector) {
   var dimensions = { height: 800, width: 500, radius: 200 };
   var center = { x: (dimensions.width / 2 + 5), y: (dimensions.height / 2 + 5)}
   // ==================================================
-  // var dimensions = { height: 300, width: 300, radius: 150 };
-  // var center = { x: (dimensions.width / 2 + 5), y: (dimensions.height / 2 + 5)};
+
   // create svg container
   var svg = d3.select(selector)
     .append('svg')
@@ -72,8 +62,6 @@ function buildDonut(url, selector) {
     // join modified (pie) data to path elements
     var paths = graph.selectAll('path')
       .data(pie(data));
-        // console.log('pie(data): ',pie(data));
-       // console.log('paths: ', paths);
     
     // handle the exit selection
     paths.exit()
@@ -131,13 +119,11 @@ function buildDonut(url, selector) {
         } );
       });
   
-      // console.log('data_array: ', data_array);
   
       data_array.sort(function(a, b){
         return b.value-a.value
       })
 
-      // data_array.forEach(el => console.log(el.value))
       console.log('sorted data_array: ', data_array);
   
       update(data_array)
@@ -160,9 +146,7 @@ function buildDonut(url, selector) {
   }
   
   function arcTweenUpdate(d) {
-    // console.log('this._current');
-    // console.log('d: ', d)
-    // interpolate between the two objects
+   
     var i = d3.interpolate(this._current, d);
     // update the current prop with new updated data
     this._current = i(1);
@@ -189,26 +173,14 @@ function buildDonut(url, selector) {
   };
   
   var handleClick = d => {
-    // console.log('d inside click: ', d) 
-    // console.log('top10Countries: ', top10Countries);
-  
-    // var newData = data_array.filter(c => c.key !== d.data.key)
-  
-    // console.log('top10Countries', top10Countries);
-    // console.log('newData', newData);
-    // update(newData)
+   
     update(newData)
   
   }
 }
 
 
-
-sexuality
-
-buildDonut('/api/socialmedia', '#socialmedia')
 buildDonut('/api/sexuality', '#sexuality')
-
 buildDonut('/api/gender', '#gender')
 buildDonut('/api/trans', '#trans')
 buildDonut('/api/dependents', '#dependents')
@@ -224,7 +196,6 @@ buildDonut('/api/workloc', '#workloc')
 buildDonut('/api/sojobs', '#sojobs')
 buildDonut('/api/soaccount', '#soaccount')
 buildDonut('/api/extraversion', '#extraversion')
-// buildDonut('/api/socialmedia', '#socialmedia')
 buildDonut('/api/opsys', '#opsys')
 buildDonut('/api/blockchainis', '#blockchainis')
 buildDonut('/api/impsyn', '#impsyn')
@@ -233,26 +204,6 @@ buildDonut('/api/offon', '#offon')
 buildDonut('/api/betterlife', '#betterlife')
 buildDonut('/api/undergradmajor', '#undergradmajor')
 buildDonut('/api/mgridiot', '#mgridiot')
-
 buildDonut('/api/socialmedia', '#socialmedia')
 
 
-
-
-// var apiRoutes = ['gender','trans', 'dependents', 'edlevel','employment',
-// 'careersat', 'jobsat', 'jobseek', 'mgrmoney', 'mgrwant', 'workplan',
-// 'workloc', 'sojobs', 'soaccount', 'extraversion', 'socialmedia',
-// 'opsys', 'blockchainis', 'impsyn','fizzbuzz', 'offon','betterlife'
-// ]
-
-// for (let index = 0; index < apiRoutes.length; index++) {
-//   const element = apiRoutes[index];
-//   const params = `"/api/${element}", "#${element}"`
-//   buildDonut(params)
-  
-// }
-
-// apiRoutes.forEach(route => {
-//     var params = `/api/${route}, #${route}`
-//     buildDonut(params)
-// })

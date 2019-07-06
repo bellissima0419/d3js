@@ -1,4 +1,7 @@
 # FLASK_APP=dash_app/app.py flask run
+# dictionary sorting
+howtosort = "sorted(country_data[1:], key = lambda i: i['country'],reverse=False)" #sort function for dictionaries
+
 import pandas as pd
 import numpy as np
 from flask import Flask, jsonify, render_template
@@ -11,6 +14,10 @@ app = Flask(__name__)
 def index():
     """Return the homepage."""
     return render_template("index.html")
+
+@app.route("/map")
+def map():
+    return render_template("map.html")
 
 
 @app.route("/api/countries")
@@ -42,7 +49,88 @@ def country_api():
     return jsonify(country_data)
 
 
+@app.route("/api/stats")
+def stats():
+    '''
+     Return list with count of respondents by country
+     with lat and longs
+    '''
+
+    conn = sqlite3.connect("dash_app/db/js_overload.sqlite")
+    cur = conn.cursor()
+
+    coordinates_query = '''
+        SELECT * from country_coordinates
+    '''
+    cur.execute(coordinates_query)
+    coordinates_rows = cur.fetchall()
+
+    coordinates = []
+
+    for row in coordinates_rows:
+        tempDict = {}
+        tempDict["code"] = row[0]
+        tempDict["location"] = [row[1], row[2]]
+        tempDict["latitude"] = row[1]
+        tempDict["longitude"] = row[2]
+        tempDict["name"] = row[3]
+        coordinates.append(tempDict)
+        
+    country_query = '''
+        SELECT Country, count(country) FROM jso11k
+        GROUP BY Country
+        ORDER BY COUNT(Country) DESC
+    '''
+
+    cur.execute(country_query)
+    country_rows = cur.fetchall()
+
+    countries = []
+
+    for row in country_rows:
+        tempDict = {}
+        tempDict["country"] = (row[0])
+        tempDict["respondentCount"] = int(row[1])
+        # tempDict[row[0]] = int(row[1])
+        countries.append(tempDict)
+        
+    for i in range(len(coordinates)):
+        for j in range(len(countries)):
+            if coordinates[i]['name'] in countries[j].values():
+                countries[j]['code'] = str(coordinates[i]['code'])
+                countries[j]['latitude'] = float(coordinates[i]['latitude'])
+                countries[j]['longitude'] = float(coordinates[i]['longitude'])
+                countries[j]['location'] = (coordinates[i]['location'])
+
+                
+    stats_query = '''
+        SELECT * FROM country_stats
+    '''
+
+    cur.execute(stats_query)
+    stats_rows = cur.fetchall()
+
+    stats = []
+
+    for row in stats_rows:
+        tempDict = {}
+        tempDict["country"] = row[0]
+        tempDict["population"] = row[1]
+        stats.append(tempDict)
+        
+    for i in range(len(stats)):
+        for j in range(len(countries)):
+            if stats[i]['country'] in countries[j].values():
+                countries[j]['population'] = stats[i]['population']
+                
+    countries = [item for item in countries if item['country'] is not None]
+
+    return jsonify(countries)
+
+
+
 def get_data(query_string):
+    # q_string = f"SELECT Sexuality, COUNT(Sexuality) FROM jso11k WHERE Sexuality IS NOT NULL GROUP BY Sexuality"
     conn = sqlite3.connect("dash_app/db/js_overload.sqlite")
     cur = conn.cursor()
     cur.execute(query_string)
@@ -57,11 +145,12 @@ def get_data(query_string):
 
 @app.route("/api/sexuality")
 def sexuality():
-    
 
     query = "SELECT Sexuality, COUNT(Sexuality) FROM jso11k WHERE Sexuality IS NOT NULL GROUP BY Sexuality"
     response = get_data(query)
     return jsonify(response)
+
+
 
 @app.route("/api/impsyn")
 def impsyn():
