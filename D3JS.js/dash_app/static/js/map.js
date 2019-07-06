@@ -131,7 +131,6 @@ d3.json(url, function(response) {
   }
 
 
-
   var cityLayer = L.layerGroup(circleMarkers);
   var percapitaLayer = L.layerGroup(percapitaMarkers);
 
