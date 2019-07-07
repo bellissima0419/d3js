@@ -1,0 +1,486 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="../static/assets/images/favicon.ico" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="../static/css/style.css">
+
+  <style>
+
+  </style>
+  <title>JS Overload</title>
+</head>
+
+<body class="grey darken-4">
+
+
+  <div class="container">
+    <div class="header">
+
+      <a href="/" class="logo">js Overload</a>
+      <div class="nav">
+        <a href="/map">Map</a>
+        <a href="/donuts">Donuts</a>
+        <a href="/scatter">Scatter</a>
+        <a href="/line"></a>
+        <a class="API" href="/apiroutes">API Routes</a>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="section blue darken-3">
+    <!-- <h4 class="center white-text">Stack Overflow Annual Survey</h4> -->
+    <h1 class="flow-text grey-text center text-lighten-2">Stack Overflow 2019 Survey</h1>
+    <h3 class="flow-text grey-text center text-lighten-2">D3.js 🍩 Charts</h3>
+
+  </header>
+
+  <div class="container section">
+
+    <div class="row">
+      <div class="col s12 m12">
+        <p class="sql flow-text  center text-lighten-2">
+          Gender
+        </p>
+        <div class="question ">
+          <p class="flow-text grey-text center text-lighten-2">
+            Which of the following do you currently identify as?
+          </p>
+
+        </div>
+        <div id="gender"></div>
+        
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m12">
+        <p class="sql flow-text  center text-lighten-2">
+          Sexuality
+        </p>
+        <div class="question ">
+          <p class="flow-text grey-text center text-lighten-2">
+            Which of the following do you currently identify as? Please select all that apply. If you prefer not to
+            answer, you may leave this question blank</p>
+
+        </div>
+        <div id="sexuality"></div>
+        
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m12">
+        <p class="sql flow-text  center text-lighten-2">
+          Trans
+        </p>
+        <div class="question">
+          <p class="flow-text grey-text center text-lighten-2">
+            Do you identify as transgender?
+          </p>
+
+        </div>
+        <div id="trans"></div>
+        
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m12">
+        <p class="sql flow-text  center text-lighten-2">
+          Dependents
+        </p>
+        <div class="question ">
+
+          <p class="flow-text grey-text center text-lighten-2">
+            Do you have any dependents (e.g., children, elders, or others) that you care for?
+          </p>
+        </div>
+        <div id="dependents"></div>
+        
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m12">
+        <p class="sql flow-text  center text-lighten-2">
+          EdLevel
+        </p>
+        <div class="question ">
+
+          <p class="flow-text grey-text center text-lighten-2">
+            Which of the following best describes the highest level of formal education that you’ve completed?
+          </p>
+
+        </div>
+        <div id="edlevel"></div>
+        
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m12">
+        <p class="sql flow-text  center text-lighten-2">
+          UndergradMajor
+        </p>
+        <div class="question ">
+
+          <p class="flow-text grey-text center text-lighten-2">
+            Which of the following best describes the highest level of formal education that you’ve completed?
+          </p>
+
+        </div>
+        <div id="undergradmajor"></div>
+        
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m12">
+        <p class="sql flow-text  center text-lighten-2">
+          Employment
+        </p>
+        <div class="question ">
+
+          <p class="flow-text grey-text center text-lighten-2">
+            Employment,Which of the following best describes your current employment status?
+          </p>
+
+        </div>
+        <div id="employment"></div>
+        
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m12">
+        <p class="sql flow-text  center text-lighten-2">
+          CareerSat
+        </p>
+        <div class="question ">
+
+          <p class="flow-text grey-text center text-lighten-2">
+            Overall, how satisfied are you with your career thus far?
+          </p>
+
+        </div>
+        <div id="careersat"></div>
+        
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col s12 m12">
+        <p class="sql flow-text  center text-lighten-2">
+          JobSat
+        </p>
+        <div class="question ">
+
+          <p class="flow-text grey-text center text-lighten-2">
+            How satisfied are you with your current job? (If you work multiple jobs, answer for the one you spend the
+            most hours on.)
+          </p>
+
+        </div>
+        <div id="jobsat"></div>
+        
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m12">
+        <p class="sql flow-text  center text-lighten-2">
+          JobSeek
+        </p>
+        <div class="question ">
+
+          <p class="flow-text grey-text center text-lighten-2">
+            Which of the following best describes your current job-seeking status?
+          </p>
+
+        </div>
+        <div id="jobseek"></div>
+        
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m12">
+        <p class="sql flow-text  center text-lighten-2">
+          MgrMoney
+        </p>
+        <div class="question ">
+
+          <p class="flow-text grey-text center text-lighten-2">
+            Do you believe that you need to be a manager to make more money?
+          </p>
+
+        </div>
+        <div id="mgrmoney"></div>
+        
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m12">
+        <p class="sql flow-text  center text-lighten-2">
+          MgrWant
+        </p>
+        <div class="question ">
+
+          <p class="flow-text grey-text center text-lighten-2">
+            Do you want to become a manager yourself in the future?
+          </p>
+
+        </div>
+        <div id="mgrwant"></div>
+        
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m12">
+        <p class="sql flow-text  center text-lighten-2">
+          MgrIdiot
+        </p>
+        <div class="question ">
+
+          <p class="flow-text grey-text center text-lighten-2">
+            How confident are you that your manager knows what they’re doing?
+          </p>
+
+        </div>
+        <div id="mgridiot"></div>
+        
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col s12 m12">
+        <p class="sql flow-text  center text-lighten-2">
+          WorkPlan
+        </p>
+        <div class="question ">
+          <p class="flow-text grey-text center text-lighten-2">
+            How structured or planned is your work?
+          </p>
+
+        </div>
+        <div id="workplan"></div>
+        
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m12">
+        <p class="sql flow-text  center text-lighten-2">
+          WorkLoc
+        </p>
+        <div class="question ">
+          <p class="flow-text grey-text center text-lighten-2">
+            Where would you prefer to work?
+          </p>
+
+        </div>
+        <div id="workloc"></div>
+        
+      </div>
+
+
+      <div class="row">
+        <div class="col s12 m12">
+          <p class="sql flow-text  center text-lighten-2">
+            SOAccount
+          </p>
+          <div class="question ">
+            <p class="flow-text grey-text center text-lighten-2">
+              Do you have a Stack Overflow account?
+            </p>
+
+          </div>
+          <div id="soaccount"></div>
+          
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col s12 m12">
+          <p class="sql flow-text  center text-lighten-2">
+            SOJobs
+          </p>
+          <div class="question ">
+            <p class="flow-text grey-text center text-lighten-2">
+              Have you ever used or visited Stack Overflow Jobs?
+            </p>
+
+          </div>
+          <div id="sojobs"></div>
+          
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col s12 m12">
+          <p class="sql flow-text  center text-lighten-2">
+            Extraversion
+          </p>
+          <div class="question ">
+            <p class="flow-text grey-text center text-lighten-2">
+              Do you prefer online chat or IRL conversations?
+            </p>
+
+          </div>
+          <div id="extraversion"></div>
+          
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col s12 m12">
+          <p class="sql flow-text  center text-lighten-2">
+            SocialMedia
+          </p>
+          <div class="question ">
+
+            <p class="flow-text grey-text center text-lighten-2">
+              What social media site do you use the most?
+            </p>
+
+          </div>
+          <div id="socialmedia">CHART GOES HERE</div>
+          
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col s12 m12">
+          <p class="sql flow-text  center text-lighten-2">
+            OpSys
+          </p>
+          <div class="question ">
+
+            <p class="flow-text grey-text center text-lighten-2">
+              What is the primary operating system in which you work?
+            </p>
+
+          </div>
+          <div id="opsys"></div>
+          
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s12 m12">
+          <p class="sql flow-text  center text-lighten-2">
+            BlockchainIs
+          </p>
+          <div class="question ">
+
+            <p class="flow-text grey-text center text-lighten-2">
+              Blockchain / cryptocurrency technology is primarily:
+            </p>
+
+          </div>
+          <div id="blockchainis"></div>
+          
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s12 m12">
+          <p class="sql flow-text  center text-lighten-2">
+            ImpSyn
+          </p>
+
+          <div class="question ">
+
+            <p class="flow-text grey-text center text-lighten-2">
+              For the specific work you do, and the years of experience you have, how do you rate your own level of
+              competence?
+            </p>
+
+          </div>
+          <div id="impsyn"></div>
+          
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s12 m12">
+          <p class="sql flow-text  center text-lighten-2">
+            FizzBuzz
+          </p>
+
+
+          <div class="question ">
+
+            <p class="flow-text grey-text center text-lighten-2">
+              Have you ever been asked to solve FizzBuzz in an interview?
+            </p>
+
+          </div>
+          <div id="fizzbuzz"></div>
+          
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col s12 m12">
+          <p class="sql flow-text  center text-lighten-2">
+            OffOn
+          </p>
+          <div class="question">
+            <p class="flow-text grey-text center text-lighten-2">
+              Have you tried turning it off and on again?
+            </p>
+
+          </div>
+          <div id="offon"></div>
+          
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s12 m12">
+          <p class="sql flow-text  center text-lighten-2">
+            BetterLife
+          </p>
+          <div class="question ">
+
+            <p class="flow-text grey-text center text-lighten-2">
+              Do you think people born today will have a better life than their parents?
+            </p>
+
+          </div>
+          <div id="betterlife"></div>
+          
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
+
+    <script src="../static/js/app.js"></script>
+    <script src="../static/js/donuts.js"></script>
+
+</body>
+
+</html>
