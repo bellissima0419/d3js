@@ -27,24 +27,34 @@ d3.json(url, function(response) {
 
     var location = response[i].location;
     var perCapita = response[i].devsPerMill;
-    if (location && perCapita) {
+    if (location && perCapita && response[i].respondentCount) {
     
     // Conditionals for countries points
     var color = "";
-    if (response[i].devsPerMill > 50) {
-      color = "#b71540";
+    if (response[i].respondentCount > 10000) {
+      // color = "#b71540";
+      color = "Crimson";
+
     }
-    else if (response[i].devsPerMill > 30) {
-      color = "DeepPink";
+    else if (response[i].respondentCount > 1000) {
+      // color = "DeepPink";
+      color = "Gold";
+
     }
-    else if (response[i].devsPerMill > 20) {
-      color = "Coral";
+    else if (response[i].respondentCount > 500) {
+      // color = "Coral";
+      color = "RoyalBlue";
+
     }
-    else if (response[i].devsPerMill > 10){
-      color = "DarkCyan"
+    else if (response[i].respondentCount > 200){
+      // color = "DarkCyan"
+      color = "MediumPurple";
+
     }
     else {
-      color = "MediumTurquoise";
+      // color = "MediumTurquoise";
+      color = "SeaGreen"
+
     }
 
     // MediumPurple
