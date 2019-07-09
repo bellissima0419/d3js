@@ -61,7 +61,7 @@ div {
 
 /* #main .nav {
   text-align: right;
-  width: 700px;
+  widt2h: 700px;
   position: absolute;
   bottom: 8px;
   right: 0px;
@@ -78,6 +78,13 @@ a.logo {
   font-family: 'Pacifico', cursive !important;
   color: #FF5733;
   /* cursor: pointer !important; */
+}
+
+.title {
+  /* font-family: 'Pacifico', cursive !important; */
+  color: #FF5733;
+  font-size: 35px;
+  font-weight: lighter;
 
 }
 
