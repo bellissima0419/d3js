@@ -94,9 +94,11 @@ d3.json(url, function(response) {
 
     percapitaMarkers.push(
       L.circle(response[i].location, {
-        fillOpacity: 0.4,
+        fillOpacity: 0.2,
         color: 'black',
-        fillColor: colorScale.domain(response[i].devsPerMill),
+        // fillColor: colorScale.domain(response[i].devsPerMill),
+        fillColor: 'black',
+
         weight: 0.4,
         // fillColor:respondentScale(response[i].respondentCount/2),
         // Adjust radius
