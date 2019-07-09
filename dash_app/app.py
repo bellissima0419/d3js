@@ -19,6 +19,10 @@ def index():
 def map():
     return render_template("map.html")
 
+@app.route("/perCapitaMap")
+def perCapitaMap():
+    return render_template("perCapitaMap.html")
+
 @app.route("/donuts")
 def donuts():
     return render_template("donuts.html")
@@ -110,9 +114,34 @@ def stats():
     for row in country_rows:
         tempDict = {}
         tempDict["country"] = (row[0])
-        tempDict["respondentCount"] = int(row[1])
+        tempDict["respondentCount"] = int(row[1]*8)
         # tempDict[row[0]] = int(row[1])
         countries.append(tempDict)
+
+    for i in range(len(countries)):
+        if countries[i]['country'] == 'Russian Federation':
+            countries[i]['country'] = 'Russia'
+        if countries[i]['country'] == 'Czech Republic':
+            countries[i]['country'] = 'Czech Republic'
+        if countries[i]['country'] == 'Viet Nam':
+            countries[i]['country'] = 'Vietnam'
+        if countries[i]['country'] == 'Venezuela, Bolivarian Republic of...':
+            countries[i]['country'] = 'Venezuela'
+        if countries[i]['country'] == 'Republic of Korea':
+            countries[i]['country'] = 'North Korea'
+        if countries[i]['country'] == 'Syrian Arab Republic':
+            countries[i]['country'] = 'Syria'
+        if countries[i]['country'] == "Lao People's Democratic Republic":
+            countries[i]['country'] = 'Laos'
+
+        if countries[i]['country'] == 'The former Yugoslav Republic of Macedonia':
+            countries[i]['country'] = 'Macedonia [FYROM]'
+        if countries[i]['country'] == 'Republic of Moldova':
+            countries[i]['country'] = 'Moldova'
+        if countries[i]['country'] == 'United Republic of Tanzania':
+            countries[i]['country'] = 'Tanzania'
+        if countries[i]['country'] == 'Democratic Republic of the Congo':
+            countries[i]['country'] = 'Congo [DRC]'
         
     for i in range(len(coordinates)):
         for j in range(len(countries)):
@@ -137,16 +166,22 @@ def stats():
         tempDict["country"] = row[0]
         tempDict["population"] = row[1]
         stats.append(tempDict)
-        
+
     for i in range(len(stats)):
         for j in range(len(countries)):
             if stats[i]['country'] in countries[j].values():
                 countries[j]['population'] = stats[i]['population']
-                
+
+    for i in range(len(countries)):
+        try:
+            countries[i]['devsPerMill'] = float(countries[i]['respondentCount'])/ float((countries[i]['population']/1000000))
+            countries[i]['devsPerMill'] = round(countries[i]['devsPerMill'], 2)
+        except:
+            continue
+
     countries = [item for item in countries if item['country'] is not None]
 
     return jsonify(countries)
-
 
 
 def get_data(query_string):
@@ -171,7 +206,6 @@ def sexuality():
     return jsonify(response)
 
 
-
 @app.route("/api/impsyn")
 def impsyn():
     "Impostor Syndrome"
@@ -179,7 +213,6 @@ def impsyn():
     query = "SELECT ImpSyn, COUNT(ImpSyn) FROM jso11k WHERE ImpSyn IS NOT NULL GROUP BY ImpSyn"
     response = get_data(query)
     return jsonify(response)
-
 
 @app.route("/api/dependents")
 def dependents():

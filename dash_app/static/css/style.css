@@ -5,6 +5,7 @@
   /* font-family: Ubuntu, sans-serif !important; */
 }
 
+
 html,
 body {
   height: 90%;
@@ -39,7 +40,6 @@ body.fixed-navi {
     text-align: center;
   
 }
-
 
 
 body, table, div, input, textarea, h1, h2, h3, h4 {

@@ -1,42 +1,18 @@
-// Create a map object
-// var myMap = L.map("map", {
-//   center: [15.5994, -28.6731],
-//   zoom: 1.4
-// });
-
-
-
-// L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
-//   attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
-//   maxZoom: 18,
-//   id: "mapbox.streets-basic",
-//   accessToken: API_KEY
-// }).addTo(myMap);
-
-//  var sample_response = {
-//   "code": "US",
-//   "country": "United States",
-//   "latitude": 37.09024,
-//   "location": [37.09024,-95.712891],
-//   "longitude": -95.712891,
-//   "respondentCount": 2597
-//   }
-
 var url = 'api/stats'
 
 d3.json(url, function(response) {
-  console.log('response[0]: ', response[0].population);
+  console.log('response[0]: ', response[0].devsPerMill);
   var counter = 0 
 
-  var minPopulation = response.reduce(function(prev, curr) {
-    return prev.population < curr.population ? prev : curr;
-    }).population;
-    console.log('minPopulation.population: ', minPopulation);
+  var mindevsPerMill = response.reduce(function(prev, curr) {
+    return prev.devsPerMill < curr.devsPerMill ? prev : curr;
+    }).devsPerMill;
+    console.log('mindevsPerMill: ', mindevsPerMill);
 
- var maxPopulation = response.reduce(function(prev, curr) {
-    return prev.population < curr.population ? curr : prev;
-    }).population;
-    console.log('maxPopulation.population: ', maxPopulation);
+ var maxdevsPerMill = response.reduce(function(prev, curr) {
+    return prev.devsPerMill < curr.devsPerMill ? curr : prev;
+    }).devsPerMill;
+    console.log('maxdevsPerMill: ', maxdevsPerMill);
 
 
   response.forEach(element => {
@@ -48,21 +24,23 @@ d3.json(url, function(response) {
   var percapitaMarkers = [];
 
   for (var i = 0; i < response.length; i++) {
+
     var location = response[i].location;
-    if (location) {
+    var perCapita = response[i].devsPerMill;
+    if (location && perCapita) {
     
     // Conditionals for countries points
     var color = "";
-    if (response[i].respondentCount > 1000) {
+    if (response[i].devsPerMill > 50) {
       color = "#b71540";
     }
-    else if (response[i].respondentCount > 500) {
+    else if (response[i].devsPerMill > 30) {
       color = "DeepPink";
     }
-    else if (response[i].respondentCount > 100) {
+    else if (response[i].devsPerMill > 20) {
       color = "Coral";
     }
-    else if (response[i].respondentCount > 20){
+    else if (response[i].devsPerMill > 10){
       color = "DarkCyan"
     }
     else {
@@ -71,17 +49,17 @@ d3.json(url, function(response) {
   
     // Add circles to map
 
-    var myScale = d3.scaleLinear()
-    .domain(d3.extent([1, 20949]))
+    // var myScale = d3.scaleLinear()
+    // .domain(d3.extent([0, 200]))
+    // .range([150000, 1200000]);
+    var  colorScale = d3.scaleLinear()
+    .domain(d3.extent([0,20949]))
     .range([150000, 1200000]);
 
     var percapitaScale = d3.scaleLinear()
-    .domain(d3.extent([minPopulation, maxPopulation]))
-    // .range([150000, 1200000]);
+    .domain(d3.extent([mindevsPerMill, maxdevsPerMill]))
+    .range([150000, 500000]);
 
-    // var  colorScale = d3.scaleOrdinal(d3.schemeCategory10)
-    //   .domain(d3.extent([(1,2597)]))
-    //     // .range([1,10])
 
     circleMarkers.push(
       L.circle(response[i].location, {
@@ -92,10 +70,12 @@ d3.json(url, function(response) {
         // fillColor: colorScale(response[i].respondentCount/2),
         // Adjust radius
         // radius: (parseInt(response[i].respondentCount) + 150000) * 2
-        radius: myScale(response[i].respondentCount)
+        radius: colorScale(response[i].respondentCount)
   
-      }).bindPopup("<h4>" + response[i].country + "</h4> <hr> <h5>Responents: " + response[i].respondentCount +  "</h5>")
-    )
+    //   }).bindPopup("<p>" + response[i].country + "</p> <hr> <p>: " + response[i].respondentCount +  "</p>")
+    // )
+  }).bindPopup(`<p>${response[i].country}</p><hr> <p>Respondent Count ${response[i].respondentCount}</p>`)
+  )
 
 
     percapitaMarkers.push(
@@ -107,39 +87,25 @@ d3.json(url, function(response) {
         // fillColor: colorScale(response[i].respondentCount/2),
         // Adjust radius
         // radius: (parseInt(response[i].respondentCount) + 150000) * 2
-        // radius: myScale(response[i].respondentCount/response[i].population)
-        radius: myScale(response[i].respondentCount)
+        // radius: myScale(response[i].respondentCount/response[i].devsPerMill)
+        radius: percapitaScale(response[i].devsPerMill)
 
   
-      }).bindPopup("<h4>" + response[i].country + "</h4> <hr> <h5>Responents: " + response[i].respondentCount +  "</h5>")
+      }).bindPopup("<h4>" + response[i].country + "</h4> <hr>Per Capita: " + response[i].devsPerMill +  "</>")
       
-      // .bindPopup("<h4>" + response[i].country + "</h4> <hr> <h5>Responents: " + response[i].population +  "</h5>")
     )
     
-    // L.circle(response[i].location, {
-    //   fillOpacity: 0.4,
-    //   color: 'black',
-    //   fillColor: color,
-    //   weight: 0.4,
-    //   // fillColor: colorScale(response[i].respondentCount/2),
-    //   // Adjust radius
-    //   // radius: (parseInt(response[i].respondentCount) + 150000) * 2
-    //   radius: myScale(response[i].respondentCount)
-
-    // }).bindPopup("<h4>" + response[i].country + "</h4> <hr> <h5>Responents: " + response[i].respondentCount +  "</h5>").addTo(myMap);
    }
   }
 
-
   var cityLayer = L.layerGroup(circleMarkers);
   var percapitaLayer = L.layerGroup(percapitaMarkers);
-
 
   var light = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
     maxZoom: 5,
     // minZoom: 1.5,
-    zomm: 1.5,
+    zomm: 1.4,
     id: "mapbox.light",
     accessToken: API_KEY
   });
@@ -148,7 +114,7 @@ d3.json(url, function(response) {
     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
     maxZoom: 5,
     // zominZoomom: 1.5,
-    zomm: 1.5,
+    zomm: 1.4,
     id: "mapbox.dark",
     accessToken: API_KEY
   });
@@ -160,12 +126,13 @@ d3.json(url, function(response) {
   };
 
   var overlayMaps = {
-    Countries: cityLayer
-    // PerCapita: percapitaLayer
+    'Total Respondents': cityLayer,
+    'Percapita': percapitaLayer
   };
 
   var myMap = L.map("map", {
-    center: [15.5994, -28.6731],
+    center: [33.886917,9.537499],
+    // center: [15.5994, -28.6731],
     zoom: 1.5,
     // maxBounds: 1.5,
     layers: [light, cityLayer]
@@ -175,10 +142,8 @@ d3.json(url, function(response) {
   // myMap.setMinZoom( myMap.getBoundsZoom( myMap.options.maxBounds ) );
 
   // setMaxBounds
-
   
   L.control.layers(baseMaps, overlayMaps).addTo(myMap);
-
 
 });
 

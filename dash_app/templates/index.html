@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <link rel="shortcut icon" href="../static/assets/images/favicon.ico" />
@@ -15,11 +16,11 @@
 
   <!-- Leaflet CSS & JS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
-  integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
-  crossorigin=""/>
+    integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+    crossorigin="" />
   <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
-  integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
-  crossorigin=""></script>
+    integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+    crossorigin=""></script>
 
   <script src="https://d3js.org/d3.v4.min.js"></script>
 
@@ -32,57 +33,27 @@
 <body>
 
   <div id="biggernav">
-      <div id="main">
-          <a href="/" class="logo">js Overload</a>
-        <div class="nav">
-          <a href="/map">Map</a>
-          <a href="/donuts">Donuts</a>
-          <a href="/scatter">Scatter</a>
-          <a href="/line"></a>
-          <a class="API" href="/apiroutes">API Routes</a>
-        </div>
+    <div id="main">
+      <a href="/" class="logo">js Overload</a>
+      <div class="nav">
+        <!-- <a href="/map">Map</a> -->
+        <a href="/perCapitaMap">Map</a>
+        <a href="/donuts">Donuts</a>
+        <a href="/scatter">Scatter</a>
+        <a href="/line"></a>
+        <a class="API" href="/apiroutes">API Routes</a>
       </div>
+    </div>
   </div>
-    
 
-    <!-- <div class="container">
-        <div id="main">
-              <a href="/" class="logo">js Overload</a>
-            <div class="nav">
-              <a href="/map">Map</a>
-              <a href="/donuts">Donuts</a>
-              <a href="/scatter">Scatter</a>
-              <a href="/line"></a>
-              <a class="API" href="/apiroutes">API Routes</a>
-            </div>
-          </div>
-    </div> -->
-        
-                  <!-- <a href="/" class="logo">js Overload</a>
-                  <div class="nav">
-                    <a href="/map">Map</a>
-                    <a href="/donuts">Donuts</a>
-                    <a href="/scatter">Scatter</a>
-                    <a href="/line"></a>
-                    <a class="API" href="/apiroutes">API Routes</a>
-                  </div>
-                </div> -->
-          <!-- </div> -->
+  <header class="section">
+    <h1 class="flow-text  center">Stack Overflow 2019 Survey</h1>
+    <h1>Total Count of Respondents Vs Respondents Per Capita (Per million habitants)</h1>
+    <h2>Use the layers control to visualize the different maps</h2>
+  </header>
 
-      <!-- </div> -->
-      <header class="section">
-          <!-- <h4 class="center white-text">Stack Overflow Annual Survey</h4> -->
-          <h1 class="flow-text  center">Stack Overflow 2019 Survey Respondent Count Per Country</h1>
-          <!-- <h3 class="flow-text center ">D3.js Donut Charts</h3> -->
-      
-        </header>
+  </div>
 
-
-        <!-- <h4>Stack Overflow 2019 Survey Respondent Count Per Country</h4> -->
-
-
-      </div>
-    
   <!-- The div where we will inject our map -->
   <!-- <h4>Stack Overflow 2019 Survey Respondent Count Per Country</h4> -->
   <div class="container" id="map"></div>
@@ -94,6 +65,7 @@
   <!-- Our JS -->
   <script src="../static/js/app.js"></script>
 
-  <script type="text/javascript" src="../static/js/map.js"></script>
+  <script type="text/javascript" src="../static/js/perCapitaMap.js"></script>
 </body>
+
 </html>
