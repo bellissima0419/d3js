@@ -54,7 +54,7 @@ d3.json(url, function(response) {
     // .range([150000, 1200000]);
     var  colorScale = d3.scaleLinear()
     .domain(d3.extent([0,20949]))
-    .range([150000, 1200000]);
+    .range([140000, 1500000]);
 
     var percapitaScale = d3.scaleLinear()
     .domain(d3.extent([mindevsPerMill, maxdevsPerMill]))
