@@ -123,7 +123,7 @@ d3.json(url, function(response) {
   // Only one base layer can be shown at a time
   var baseMaps = {
     Light: light,
-    Dark: dark
+    // Dark: dark
   };
 
   var overlayMaps = {
