@@ -1,31 +1,37 @@
 # FLASK_APP=dash_app/app.py flask run
-# dictionary sorting
-howtosort = "sorted(country_data[1:], key = lambda i: i['country'],reverse=False)" #sort function for dictionaries
-
-import pandas as pd
-import numpy as np
-from flask import Flask, jsonify, render_template
-import sqlite3
 import re
+import sqlite3
+from flask import Flask, jsonify, render_template
+import numpy as np
+import pandas as pd
+
+# sort function for dictionaries
+# howtosort = "sorted(country_data[1:], key = lambda i: i['country'],reverse=False)"
+
 
 app = Flask(__name__)
+
 
 @app.route("/")
 def index():
     """Return the homepage."""
     return render_template("index.html")
 
+
 @app.route("/map")
 def map():
-    return render_template("map.html")
+    return render_template("perCapitaMap.html")
+
 
 @app.route("/perCapitaMap")
 def perCapitaMap():
     return render_template("perCapitaMap.html")
 
+
 @app.route("/donuts")
 def donuts():
     return render_template("donuts.html")
+
 
 @app.route("/scatter")
 def scatter():
@@ -35,13 +41,11 @@ def scatter():
 @app.route("/line")
 def line():
     return render_template("line.html")
-    
+
 
 @app.route("/apiroutes")
 def apiroutes():
     return render_template("apiroutes.html")
-
-
 
 
 @app.route("/api/countries")
@@ -99,7 +103,7 @@ def stats():
         tempDict["longitude"] = row[2]
         tempDict["name"] = row[3]
         coordinates.append(tempDict)
-        
+
     country_query = '''
         SELECT Country, count(country) FROM jso11k
         GROUP BY Country
@@ -133,7 +137,6 @@ def stats():
             countries[i]['country'] = 'Syria'
         if countries[i]['country'] == "Lao People's Democratic Republic":
             countries[i]['country'] = 'Laos'
-
         if countries[i]['country'] == 'The former Yugoslav Republic of Macedonia':
             countries[i]['country'] = 'Macedonia [FYROM]'
         if countries[i]['country'] == 'Republic of Moldova':
@@ -142,7 +145,7 @@ def stats():
             countries[i]['country'] = 'Tanzania'
         if countries[i]['country'] == 'Democratic Republic of the Congo':
             countries[i]['country'] = 'Congo [DRC]'
-        
+
     for i in range(len(coordinates)):
         for j in range(len(countries)):
             if coordinates[i]['name'] in countries[j].values():
@@ -151,7 +154,6 @@ def stats():
                 countries[j]['longitude'] = float(coordinates[i]['longitude'])
                 countries[j]['location'] = (coordinates[i]['location'])
 
-                
     stats_query = '''
         SELECT * FROM country_stats
     '''
@@ -174,7 +176,8 @@ def stats():
 
     for i in range(len(countries)):
         try:
-            countries[i]['devsPerMill'] = float(countries[i]['respondentCount'])/ float((countries[i]['population']/1000000))
+            countries[i]['devsPerMill'] = float(
+                countries[i]['respondentCount']) / float((countries[i]['population']/1000000))
             countries[i]['devsPerMill'] = round(countries[i]['devsPerMill'], 2)
         except:
             continue
@@ -214,6 +217,7 @@ def impsyn():
     response = get_data(query)
     return jsonify(response)
 
+
 @app.route("/api/dependents")
 def dependents():
     "Dependents"
@@ -221,6 +225,7 @@ def dependents():
     query = "SELECT Dependents, COUNT(Dependents) FROM jso11k WHERE Dependents IS NOT NULL GROUP BY Dependents"
     response = get_data(query)
     return jsonify(response)
+
 
 @app.route("/api/gender")
 def gender():
@@ -230,6 +235,7 @@ def gender():
     response = get_data(query)
     return jsonify(response)
 
+
 @app.route("/api/extraversion")
 def extraversion():
     "extraversion"
@@ -237,6 +243,7 @@ def extraversion():
     query = "SELECT Extraversion, COUNT(Extraversion) FROM jso11k WHERE Extraversion IS NOT NULL GROUP BY Extraversion"
     response = get_data(query)
     return jsonify(response)
+
 
 @app.route("/api/sojobs")
 def sojobs():
@@ -268,6 +275,7 @@ def employment():
     query = "SELECT Employment, COUNT(Employment) FROM jso11k WHERE Employment IS NOT NULL GROUP BY Employment"
     response = get_data(query)
     return jsonify(response)
+
 
 @app.route("/api/careersat")
 def careersat():
@@ -308,6 +316,7 @@ def mgrwant():
     response = get_data(query)
     return jsonify(response)
 
+
 @app.route("/api/jobseek")
 def jobseek():
 
@@ -315,12 +324,14 @@ def jobseek():
     response = get_data(query)
     return jsonify(response)
 
+
 @app.route("/api/soaccount")
 def soaccount():
 
     query = "SELECT SOAccount, COUNT(SOAccount) FROM jso11k WHERE SOAccount IS NOT NULL GROUP BY SOAccount"
     response = get_data(query)
     return jsonify(response)
+
 
 @app.route("/api/fizzbuzz")
 def fizzbuzz():
@@ -337,6 +348,7 @@ def workplan():
     response = get_data(query)
     return jsonify(response)
 
+
 @app.route("/api/workloc")
 def workloc():
 
@@ -344,12 +356,14 @@ def workloc():
     response = get_data(query)
     return jsonify(response)
 
+
 @app.route("/api/blockchainis")
 def blockchainis():
 
     query = "SELECT BlockChainIs, COUNT(BlockChainIs) FROM jso11k WHERE BlockChainIs IS NOT NULL GROUP BY BlockChainIs"
     response = get_data(query)
     return jsonify(response)
+
 
 @app.route("/api/opsys")
 def opsys():
