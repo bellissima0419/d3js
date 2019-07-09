@@ -74,7 +74,7 @@ d3.json(url, function(response) {
   
     //   }).bindPopup("<p>" + response[i].country + "</p> <hr> <p>: " + response[i].respondentCount +  "</p>")
     // )
-  }).bindPopup(`<p>${response[i].country}</p><hr> <p>Respondent Count ${response[i].respondentCount}</p>`)
+  }).bindPopup(`${response[i].country}<br>Population: ${response[i].population}<br>Total Respondents: ${response[i].respondentCount}`)
   )
 
 
@@ -91,8 +91,9 @@ d3.json(url, function(response) {
         radius: percapitaScale(response[i].devsPerMill)
 
   
-      }).bindPopup("<h4>" + response[i].country + "</h4> <hr>Per Capita: " + response[i].devsPerMill +  "</>")
+      }).bindPopup(`${response[i].country}<br>Respondents Per Mill<br>${response[i].devsPerMill}`)
       
+      // .bindPopup("<h4>" + response[i].country + "</h4> <hr>Per Capita: " + response[i].devsPerMill +  "</>")
     )
     
    }
