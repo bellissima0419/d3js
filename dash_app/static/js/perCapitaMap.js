@@ -2,7 +2,7 @@ var url = 'api/stats'
 
 d3.json(url, function(response) {
   console.log('response[0]: ', response[0].devsPerMill);
-  var counter = 0 
+  // var counter = 0 
 
   var mindevsPerMill = response.reduce(function(prev, curr) {
     return prev.devsPerMill < curr.devsPerMill ? prev : curr;
@@ -15,10 +15,10 @@ d3.json(url, function(response) {
     console.log('maxdevsPerMill: ', maxdevsPerMill);
 
 
-  response.forEach(element => {
-    Object.entries(element).forEach(([key,value]) => counter += element["respondentCount"]);
+  // response.forEach(element => {
+  //   Object.entries(element).forEach(([key,value]) => counter += element["respondentCount"]);
     
-  });
+  // });
 
   var circleMarkers = [];
   var percapitaMarkers = [];
