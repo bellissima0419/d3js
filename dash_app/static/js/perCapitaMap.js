@@ -20,7 +20,7 @@ d3.json(url, function(response) {
     
   // });
 
-  var circleMarkers = [];
+  var respondentMarkers = [];
   var percapitaMarkers = [];
 
   for (var i = 0; i < response.length; i++) {
@@ -46,13 +46,27 @@ d3.json(url, function(response) {
     else {
       color = "MediumTurquoise";
     }
+
+    // MediumPurple
+    // MediumSlateBlue
+    // Orchid
+    // RoyalBlue
+    // Tomato
+    // Gold
   
     // Add circles to map
 
     // var myScale = d3.scaleLinear()
     // .domain(d3.extent([0, 200]))
     // .range([150000, 1200000]);
-    var  colorScale = d3.scaleLinear()
+
+    // schemePaired
+
+    var colorScale = d3.scaleOrdinal(d3["schemeSet3"])
+      .domain(mindevsPerMill, maxdevsPerMill)
+
+
+    var respondentScale = d3.scaleLinear()
     .domain(d3.extent([0,20949]))
     .range([140000, 1500000]);
 
@@ -61,16 +75,16 @@ d3.json(url, function(response) {
     .range([150000, 500000]);
 
 
-    circleMarkers.push(
+    respondentMarkers.push(
       L.circle(response[i].location, {
         fillOpacity: 0.4,
         color: 'black',
         fillColor: color,
         weight: 0.4,
-        // fillColor: colorScale(response[i].respondentCount/2),
+        // fillColor:respondentScale(response[i].respondentCount/2),
         // Adjust radius
         // radius: (parseInt(response[i].respondentCount) + 150000) * 2
-        radius: colorScale(response[i].respondentCount)
+        radius:respondentScale(response[i].respondentCount)
   
     //   }).bindPopup("<p>" + response[i].country + "</p> <hr> <p>: " + response[i].respondentCount +  "</p>")
     // )
@@ -82,9 +96,9 @@ d3.json(url, function(response) {
       L.circle(response[i].location, {
         fillOpacity: 0.4,
         color: 'black',
-        fillColor: color,
+        fillColor: colorScale.domain(response[i].devsPerMill),
         weight: 0.4,
-        // fillColor: colorScale(response[i].respondentCount/2),
+        // fillColor:respondentScale(response[i].respondentCount/2),
         // Adjust radius
         // radius: (parseInt(response[i].respondentCount) + 150000) * 2
         // radius: myScale(response[i].respondentCount/response[i].devsPerMill)
@@ -99,7 +113,7 @@ d3.json(url, function(response) {
    }
   }
 
-  var cityLayer = L.layerGroup(circleMarkers);
+  var respondentCountLayer = L.layerGroup(respondentMarkers);
   var percapitaLayer = L.layerGroup(percapitaMarkers);
 
   var light = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
@@ -127,7 +141,7 @@ d3.json(url, function(response) {
   };
 
   var overlayMaps = {
-    'Total Respondents': cityLayer,
+    'Total Respondents': respondentCountLayer,
     'Percapita': percapitaLayer
   };
 
@@ -136,7 +150,7 @@ d3.json(url, function(response) {
     // center: [15.5994, -28.6731],
     zoom: 1.5,
     // maxBounds: 1.5,
-    layers: [light, cityLayer]
+    layers: [light, respondentCountLayer]
 
   });
 
